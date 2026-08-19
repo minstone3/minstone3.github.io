@@ -1,20 +1,23 @@
 import { NavLink } from 'react-router-dom'
 import Logo from './Logo'
-
-const navItems = [
-  { to: '/company', label: 'Company' },
-  { to: '/solutions', label: 'Solutions' },
-  { to: '/industries', label: 'Industries' },
-] as const
+import LanguageSwitch from './LanguageSwitch'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Header() {
+  const { t } = useLanguage()
+  const navItems = [
+    { to: '/company', label: t.nav.company },
+    { to: '/solutions', label: t.nav.solutions },
+    { to: '/industries', label: t.nav.industries },
+  ]
+
   return (
     <header className="site-header">
       <div className="header-inner wrap">
-        <NavLink className="logo" to="/" end aria-label="OAXIS 홈">
+        <NavLink className="logo" to="/" end aria-label={t.nav.homeAria}>
           <Logo />
         </NavLink>
-        <nav className="nav" aria-label="주요 메뉴">
+        <nav className="nav" aria-label={t.nav.menuAria}>
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -25,12 +28,15 @@ export default function Header() {
             </NavLink>
           ))}
         </nav>
-        <NavLink
-          className={({ isActive }) => (isActive ? 'header-cta active' : 'header-cta')}
-          to="/contact"
-        >
-          파트너십 문의
-        </NavLink>
+        <div className="header-actions">
+          <LanguageSwitch />
+          <NavLink
+            className={({ isActive }) => (isActive ? 'header-cta active' : 'header-cta')}
+            to="/contact"
+          >
+            {t.nav.contact}
+          </NavLink>
+        </div>
       </div>
     </header>
   )

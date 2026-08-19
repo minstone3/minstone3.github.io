@@ -87,6 +87,31 @@ h1, h2, h3, p { margin-top: 0; }
 }
 .header-cta:hover,
 .header-cta.active { color: var(--navy); background: var(--lime); border-color: var(--lime); }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7f969c;
+  font: 600 11px/1 "DM Mono", monospace;
+  letter-spacing: .08em;
+}
+.lang-switch button {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+.lang-switch button.active { color: var(--lime); }
+.lang-switch-sep { opacity: .45; }
 
 .page-fill {
   flex: 1;
