@@ -1,4 +1,6 @@
-const industries = [
+import type { IndustryItem } from '../types'
+
+const industries: IndustryItem[] = [
   {
     number: '01',
     title: '스마트 물류 & 풀필먼트',

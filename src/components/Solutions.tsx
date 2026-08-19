@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
+import type { ArchitectureLayer, SolutionItem } from '../types'
 
-const solutions = [
+const solutions: SolutionItem[] = [
   {
     mark: 'A',
     title: 'Spatial Anchor',
@@ -18,7 +19,7 @@ const solutions = [
   },
 ]
 
-const architecture = [
+const architecture: ArchitectureLayer[] = [
   { title: 'EDGE SERVER', note: '정제 · 연산' },
   { title: 'AI CORE', note: '보정 · 동선' },
   { title: 'MIDDLEWARE', note: '레거시 연동' },

@@ -1,4 +1,6 @@
-const values = [
+import type { ValueItem } from '../types'
+
+const values: ValueItem[] = [
   {
     number: '01 — PRECISION',
     title: 'cm급 초정밀 위치 추적',
