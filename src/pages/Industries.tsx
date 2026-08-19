@@ -20,7 +20,7 @@ const industries: IndustryItem[] = [
 
 export default function Industries() {
   return (
-    <section className="section" id="industries" aria-labelledby="industries-title">
+    <section className="section page-fill" aria-labelledby="industries-title">
       <div className="wrap">
         <div className="section-head">
           <div>

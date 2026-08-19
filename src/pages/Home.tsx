@@ -1,6 +1,8 @@
-export default function Hero() {
+import { Link } from 'react-router-dom'
+
+export default function Home() {
   return (
-    <section className="hero" id="home" aria-labelledby="hero-title">
+    <section className="hero" aria-labelledby="hero-title">
       <div className="wrap">
         <div>
           <p className="kicker mono">AI Spatial Intelligence · RTLS Platform</p>
@@ -12,9 +14,9 @@ export default function Hero() {
           <p className="hero-copy">
             AI 공간 지능 엔진과 cm급 실시간 위치 추적 기술로 사람·자산·재고의 흐름을 실시간으로 가시화하여 완전한 자율 운영 체계를 구축합니다.
           </p>
-          <a className="button" href="#solutions">
+          <Link className="button" to="/solutions">
             플랫폼 살펴보기
-          </a>
+          </Link>
           <p className="hero-note">OASIX1 / SPATIAL INTELLIGENCE PLATFORM</p>
         </div>
         <div className="visual" aria-label="실시간 공간 모니터링 화면 예시">

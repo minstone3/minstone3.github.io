@@ -28,7 +28,7 @@ const architecture: ArchitectureLayer[] = [
 
 export default function Solutions() {
   return (
-    <section className="section dark-section" id="solutions" aria-labelledby="solutions-title">
+    <section className="section dark-section page-fill" aria-labelledby="solutions-title">
       <div className="wrap">
         <div className="section-head">
           <div>

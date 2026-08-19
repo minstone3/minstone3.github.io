@@ -1,23 +1,24 @@
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Company from './components/Company'
-import Solutions from './components/Solutions'
-import Industries from './components/Industries'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Layout from './Layout'
+import Home from './pages/Home'
+import Company from './pages/Company'
+import Solutions from './pages/Solutions'
+import Industries from './pages/Industries'
+import Contact from './pages/Contact'
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Company />
-        <Solutions />
-        <Industries />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/industries" element={<Industries />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }

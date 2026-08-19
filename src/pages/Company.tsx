@@ -20,7 +20,7 @@ const values: ValueItem[] = [
 
 export default function Company() {
   return (
-    <section className="section" id="company" aria-labelledby="company-title">
+    <section className="section page-fill" aria-labelledby="company-title">
       <div className="wrap">
         <div className="section-head">
           <div>

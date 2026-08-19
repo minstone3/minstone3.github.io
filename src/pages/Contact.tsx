@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <section className="contact" id="contact" aria-labelledby="contact-title">
+    <section className="contact page-fill" aria-labelledby="contact-title">
       <div className="wrap">
         <div>
           <p className="mono">Partnership / PoC / SI</p>
