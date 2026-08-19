@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI 공간 지능과 cm급 실시간 위치 추적 플랫폼, (주)오아식스1">
+  <title>오아식스1 | AI 공간 지능 & 실시간 위치 플랫폼</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#071827; --navy-2:#0d2638; --ink:#102431; --muted:#6c7b82; --paper:#f4f7f3; --white:#fff; --line:#d9e2dd; --mint:#a7efca; --lime:#d7f36a; --orange:#ff9a5a; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:"Manrope",sans-serif; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(calc(100% - 48px),var(--max)); margin:0 auto; }
+    .mono { font:500 11px/1.2 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
+    .site-header { position:absolute; z-index:2; inset:0 0 auto; color:var(--white); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; padding:25px 0; border-bottom:1px solid rgba(255,255,255,.16); }
+    .logo { font-size:21px; font-weight:800; letter-spacing:-.07em; }
+    .logo span { color:var(--mint); }
+    .nav { display:flex; gap:30px; color:#bbcacd; font-size:13px; font-weight:600; }
+    .nav a:hover { color:var(--lime); }
+    .header-cta { padding:10px 15px; border:1px solid rgba(255,255,255,.35); font-size:12px; font-weight:700; }
+    .header-cta:hover { color:var(--navy); background:var(--lime); border-color:var(--lime); }
+    .hero { position:relative; overflow:hidden; min-height:750px; padding:190px 0 90px; color:var(--white); background:var(--navy); }
+    .hero::before { position:absolute; inset:0; opacity:.32; background-image:linear-gradient(rgba(167,239,202,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(167,239,202,.12) 1px,transparent 1px); background-size:64px 64px; content:""; }
+    .hero .wrap { position:relative; display:grid; grid-template-columns:1fr .82fr; gap:72px; align-items:center; }
+    .kicker { margin:0 0 22px; color:var(--mint); }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { max-width:720px; margin-bottom:25px; font-size:clamp(43px,6vw,78px); line-height:1.04; letter-spacing:-.075em; }
+    h1 em { color:var(--lime); font-style:normal; }
+    .hero-copy { max-width:600px; margin-bottom:38px; color:#c3d0d2; font-size:17px; }
+    .button { display:inline-flex; align-items:center; gap:16px; padding:15px 19px; color:var(--navy); background:var(--lime); font-size:13px; font-weight:800; }
+    .button::after { content:"↗"; font-size:17px; }
+    .button:hover { background:var(--mint); }
+    .hero-note { margin:30px 0 0; color:#7f969c; font:11px "DM Mono",monospace; }
+    .visual { position:relative; min-height:380px; padding:18px; border:1px solid rgba(167,239,202,.35); background:rgba(13,38,56,.82); box-shadow:20px 20px 0 rgba(167,239,202,.08); }
+    .visual-top { display:flex; justify-content:space-between; padding-bottom:15px; color:#86a4a6; border-bottom:1px solid rgba(167,239,202,.2); }
+    .live { color:var(--mint); }
+    .live::before { display:inline-block; width:6px; height:6px; margin-right:6px; border-radius:50%; background:var(--mint); content:""; }
+    .map { position:relative; height:270px; margin-top:18px; overflow:hidden; background:linear-gradient(145deg,#122f3f,#092131); }
+    .map::before { position:absolute; inset:0; opacity:.42; background-image:linear-gradient(90deg,transparent 49%,#8abbb3 50%,transparent 51%),linear-gradient(transparent 49%,#8abbb3 50%,transparent 51%); background-size:80px 80px; content:""; }
+    .route { position:absolute; width:72%; height:62%; top:20%; left:15%; border:1px dashed var(--mint); border-left:0; border-bottom:0; transform:skewY(-18deg); }
+    .pin { position:absolute; width:10px; height:10px; border:2px solid var(--navy); border-radius:50%; background:var(--lime); box-shadow:0 0 0 6px rgba(215,243,106,.13); }
+    .pin.one { top:24%; left:18%; } .pin.two { top:54%; left:48%; background:var(--orange); } .pin.three { top:29%; right:15%; }
+    .visual-bottom { display:flex; justify-content:space-between; margin-top:15px; color:#91a9ac; }
+    .visual-bottom strong { display:block; margin-top:5px; color:var(--white); font-size:18px; }
+    .section { padding:105px 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:52px; }
+    .section-label { margin:0 0 14px; color:#42a47f; }
+    h2 { max-width:700px; margin-bottom:0; font-size:clamp(34px,4.5vw,58px); line-height:1.08; letter-spacing:-.075em; }
+    .section-intro { max-width:350px; margin-bottom:2px; color:var(--muted); font-size:14px; }
+    .values { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); }
+    .value { padding:31px 28px 12px 0; border-right:1px solid var(--line); }
+    .value + .value { padding-left:28px; }
+    .value:last-child { border-right:0; }
+    .value-number { display:block; margin-bottom:46px; color:#42a47f; }
+    .value h3 { margin-bottom:12px; font-size:21px; letter-spacing:-.05em; }
+    .value p { margin-bottom:0; color:var(--muted); font-size:14px; }
+    .dark-section { color:var(--white); background:var(--navy-2); }
+    .dark-section .section-label { color:var(--mint); }
+    .dark-section .section-intro { color:#a4b8bb; }
+    .solution-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .solution { min-height:305px; padding:25px; border:1px solid rgba(167,239,202,.22); }
+    .solution:hover { border-color:var(--mint); background:rgba(167,239,202,.06); }
+    .solution-mark { display:grid; place-items:center; width:42px; height:42px; margin-bottom:72px; color:var(--navy); background:var(--mint); font:600 13px "DM Mono",monospace; }
+    .solution:nth-child(2) .solution-mark { background:var(--lime); } .solution:nth-child(3) .solution-mark { background:var(--orange); }
+    .solution h3 { margin-bottom:10px; font-size:23px; letter-spacing:-.06em; }
+    .solution p { margin-bottom:0; color:#a4b8bb; font-size:13px; }
+    .architecture { display:flex; align-items:center; gap:0; margin-top:58px; color:#9ab1b4; }
+    .architecture span { flex:1; padding:15px; text-align:center; border:1px solid rgba(167,239,202,.24); font-size:12px; }
+    .architecture i { width:24px; height:1px; background:var(--mint); }
+    .industries { display:grid; grid-template-columns:1.1fr 1fr; gap:65px; align-items:start; }
+    .industry-list { border-top:1px solid var(--line); }
+    .industry { display:grid; grid-template-columns:38px 1fr 20px; gap:18px; align-items:center; padding:22px 0; border-bottom:1px solid var(--line); }
+    .industry-number { color:#42a47f; font:12px "DM Mono",monospace; }
+    .industry h3 { margin:0 0 3px; font-size:17px; letter-spacing:-.04em; }
+    .industry p { margin:0; color:var(--muted); font-size:13px; }
+    .industry-arrow { color:#42a47f; font-size:20px; }
+    .stat { padding:33px; background:var(--lime); }
+    .stat strong { display:block; font-size:clamp(48px,7vw,80px); line-height:1; letter-spacing:-.08em; }
+    .stat span { display:block; max-width:230px; margin-top:17px; font-size:14px; font-weight:700; }
+    .contact { padding:100px 0 120px; color:var(--white); background:var(--orange); }
+    .contact .wrap { display:flex; justify-content:space-between; align-items:end; gap:40px; }
+    .contact h2 { color:var(--navy); }
+    .contact p { max-width:470px; margin-bottom:27px; color:#5c2d1c; font-size:15px; }
+    .contact .button { color:var(--white); background:var(--navy); }
+    .contact .button:hover { background:var(--navy-2); }
+    footer { padding:21px 0; color:#9eb2b5; background:var(--navy); }
+    footer .wrap { display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width:760px) {
+      .wrap { width:min(calc(100% - 32px),var(--max)); }
+      .nav { display:none; } .header-cta { padding:8px 11px; }
+      .hero { min-height:auto; padding:145px 0 70px; }
+      .hero .wrap,.industries { grid-template-columns:1fr; gap:50px; }
+      .visual { min-height:340px; } .section { padding:72px 0; }
+      .section-head { display:block; margin-bottom:35px; } .section-intro { margin-top:20px; }
+      .values,.solution-grid { grid-template-columns:1fr; }
+      .value,.value + .value { padding:25px 0; border-right:0; border-bottom:1px solid var(--line); }
+      .value-number { margin-bottom:25px; } .solution { min-height:250px; } .solution-mark { margin-bottom:45px; }
+      .architecture { display:grid; grid-template-columns:1fr; gap:6px; }
+      .architecture i { width:1px; height:12px; margin:auto; }
+      .contact { padding:72px 0; } .contact .wrap { display:block; } .contact .button { margin-top:28px; }
+      footer .wrap { display:block; } footer span { display:block; margin-top:6px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner wrap"><a class="logo" href="#home">OASIX<span>1</span></a><nav class="nav" aria-label="주요 메뉴"><a href="#company">Company</a><a href="#solutions">Solutions</a><a href="#industries">Industries</a></nav><a class="header-cta" href="#contact">파트너십 문의</a></div></header>
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title"><div class="wrap"><div><p class="kicker mono">AI Spatial Intelligence · RTLS Platform</p><h1 id="hero-title">공간을 읽고,<br><em>운영을 바꿉니다.</em></h1><p class="hero-copy">AI 공간 지능 엔진과 cm급 실시간 위치 추적 기술로 사람·자산·재고의 흐름을 실시간으로 가시화하여 완전한 자율 운영 체계를 구축합니다.</p><a class="button" href="#solutions">플랫폼 살펴보기</a><p class="hero-note">OASIX1 / SPATIAL INTELLIGENCE PLATFORM</p></div><div class="visual" aria-label="실시간 공간 모니터링 화면 예시"><div class="visual-top mono"><span>SPATIAL DASHBOARD</span><span class="live">LIVE</span></div><div class="map"><span class="route"></span><i class="pin one"></i><i class="pin two"></i><i class="pin three"></i></div><div class="visual-bottom mono"><span>ACTIVE TAGS<strong>1,248</strong></span><span>UPDATE<strong>100ms</strong></span><span>PRECISION<strong>10cm</strong></span></div></div></div></section>
+    <section class="section" id="company" aria-labelledby="company-title"><div class="wrap"><div class="section-head"><div><p class="section-label mono">01 / Company</p><h2 id="company-title">현장의 모든 흐름을<br>하나의 언어로 연결합니다.</h2></div><p class="section-intro">(주)오아식스1은 AI 공간 지능과 실시간 위치 추적을 결합한 공간 플랫폼 전문 기업입니다.</p></div><div class="values"><article class="value"><span class="value-number mono">01 — PRECISION</span><h3>cm급 초정밀 위치 추적</h3><p>AI 딥러닝 보정으로 난반사 환경에서도 10cm 정밀도를 확보합니다.</p></article><article class="value"><span class="value-number mono">02 — EFFICIENCY</span><h3>원스톱 하이브리드 인프라</h3><p>통합 인프라로 구축 및 유지 비용을 40% 절감합니다.</p></article><article class="value"><span class="value-number mono">03 — AUTONOMY</span><h3>AI 공간 지능화</h3><p>실시간 3D 연산과 최적 동선 도출로 현장 효율을 극대화합니다.</p></article></div></div></section>
+    <section class="section dark-section" id="solutions" aria-labelledby="solutions-title"><div class="wrap"><div class="section-head"><div><p class="section-label mono">02 / Solutions</p><h2 id="solutions-title">하드웨어부터 AI SaaS까지,<br>운영의 전 과정을 설계합니다.</h2></div><p class="section-intro">현장의 데이터를 모으고, 해석하고, 바로 실행할 수 있는 하나의 플랫폼입니다.</p></div><div class="solution-grid"><article class="solution"><div class="solution-mark">A</div><h3>Spatial Anchor</h3><p>50m 커버리지와 PoE를 지원하는 UWB 앵커 게이트웨이</p></article><article class="solution"><div class="solution-mark">T</div><h3>Spatial Tag</h3><p>10cm 정밀 측위, 4.2&quot; E-paper 디스플레이, 3년+ 배터리 수명</p></article><article class="solution"><div class="solution-mark">D</div><h3>Spatial Dashboard</h3><p>Stripe LCD를 통한 3D 위치 지도와 터치 제어</p></article></div><div class="architecture mono"><span>EDGE SERVER<br><small>정제 · 연산</small></span><i></i><span>AI CORE<br><small>보정 · 동선</small></span><i></i><span>MIDDLEWARE<br><small>레거시 연동</small></span><i></i><span>ADAPTIVE CLOUD<br><small>3D 공간 연산</small></span></div></div></section>
+    <section class="section" id="industries" aria-labelledby="industries-title"><div class="wrap"><div class="section-head"><div><p class="section-label mono">03 / Industries</p><h2 id="industries-title">데이터가 필요한<br>모든 현장에 적용됩니다.</h2></div><p class="section-intro">정밀한 위치 데이터로 병목을 발견하고, 더 나은 다음 행동을 제안합니다.</p></div><div class="industries"><div class="industry-list"><article class="industry"><span class="industry-number">01</span><div><h3>스마트 물류 & 풀필먼트</h3><p>고밀도 셀 창고 추적 및 피킹 동선 최적화</p></div><span class="industry-arrow">↗</span></article><article class="industry"><span class="industry-number">02</span><div><h3>스마트 제조 & 공정 관리</h3><p>재공품 추적과 AGV/AMR 연동으로 병목 방지</p></div><span class="industry-arrow">↗</span></article><article class="industry"><span class="industry-number">03</span><div><h3>스마트 리테일 & 헬스케어</h3><p>고객 동선과 중요 의료기기의 실시간 관리</p></div><span class="industry-arrow">↗</span></article></div><div class="stat"><strong>10,000+</strong><span>태그 동시 관제와 100ms 이내 실시간 업데이트로 더 빠른 의사결정을 지원합니다.</span></div></div></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><div><p class="mono">Partnership / PoC / SI</p><h2 id="contact-title">현장의 다음 장면을<br>함께 만들어 보세요.</h2></div><div><p>스마트 물류·공장 현장 실증부터 WMS/MES/ERP 연동, 글로벌 공동 사업화까지 논의할 수 있습니다.</p><a class="button" href="mailto:contact@oaxis.co.kr">contact@oaxis.co.kr</a></div></div></section>
+  </main>
+  <footer><div class="wrap"><span class="mono">(주)오아식스1 · OASIX1</span><span class="mono">AI SPATIAL INTELLIGENCE & REAL-TIME LOCATION PLATFORM</span></div></footer>
+</body>
+</html>
