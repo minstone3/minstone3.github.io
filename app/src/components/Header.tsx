@@ -1,8 +1,5 @@
 import { NavLink } from 'react-router-dom'
-
-type HeaderProps = {
-  overlay?: boolean
-}
+import Logo from './Logo'
 
 const navItems = [
   { to: '/company', label: 'Company' },
@@ -10,12 +7,12 @@ const navItems = [
   { to: '/industries', label: 'Industries' },
 ] as const
 
-export default function Header({ overlay = false }: HeaderProps) {
+export default function Header() {
   return (
-    <header className={overlay ? 'site-header' : 'site-header site-header-solid'}>
+    <header className="site-header">
       <div className="header-inner wrap">
-        <NavLink className="logo" to="/" end>
-          OASIX<span>1</span>
+        <NavLink className="logo" to="/" end aria-label="OAXIS 홈">
+          <Logo />
         </NavLink>
         <nav className="nav" aria-label="주요 메뉴">
           {navItems.map((item) => (

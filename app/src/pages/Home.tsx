@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import dashboardImage from '../assets/home-spatial-dashboard.png'
 
 export default function Home() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className="hero page-fill" aria-labelledby="hero-title">
       <div className="wrap">
         <div>
           <p className="kicker mono">AI Spatial Intelligence · RTLS Platform</p>
@@ -17,19 +18,16 @@ export default function Home() {
           <Link className="button" to="/solutions">
             플랫폼 살펴보기
           </Link>
-          <p className="hero-note">OASIX1 / SPATIAL INTELLIGENCE PLATFORM</p>
+          <p className="hero-note">OASIX / SPATIAL INTELLIGENCE PLATFORM</p>
         </div>
         <div className="visual" aria-label="실시간 공간 모니터링 화면 예시">
           <div className="visual-top mono">
             <span>SPATIAL DASHBOARD</span>
             <span className="live">LIVE</span>
           </div>
-          <div className="map">
-            <span className="route" />
-            <i className="pin one" />
-            <i className="pin two" />
-            <i className="pin three" />
-          </div>
+          <figure className="map">
+            <img src={dashboardImage} alt="실시간 3D 공간 위치 대시보드" />
+          </figure>
           <div className="visual-bottom mono">
             <span>
               ACTIVE TAGS<strong>1,248</strong>
