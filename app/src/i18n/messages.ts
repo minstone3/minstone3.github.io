@@ -289,7 +289,7 @@ export const messages: Record<Language, Messages> = {
       ],
       diff: {
         kicker: 'Differentiation',
-        title: '경쟁 비교 및 차별화 전략',
+        title: '경쟁 비교 및 차별화',
         intro: '비콘·RFID 및 일반 UWB RTLS 대비 오아식스만의 세 가지 경쟁 우위',
         items: [
           {
