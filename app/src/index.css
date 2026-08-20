@@ -485,31 +485,54 @@ h2 { max-width: 700px; margin-bottom: 0; font-size: clamp(32px, 4.2vw, 52px); li
   line-height: 1.75;
 }
 .soft-detail-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 .soft-detail-item {
-  padding: 18px 18px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  padding: 0;
+  min-height: 240px;
   border: 1px solid rgba(167, 239, 202, .16);
   background: rgba(7, 24, 39, .35);
 }
-.soft-detail-item span {
+.soft-detail-item:nth-child(even) .soft-detail-copy { order: 2; }
+.soft-detail-item:nth-child(even) .soft-detail-image { order: 1; }
+.soft-detail-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 30px;
+}
+.soft-detail-copy span {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: var(--mint);
   font-size: 11px;
 }
-.soft-detail-item h4 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  letter-spacing: -.03em;
+.soft-detail-copy h4 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: -.04em;
 }
-.soft-detail-item p {
+.soft-detail-copy p {
   margin: 0;
   color: #a4b8bb;
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
+}
+.soft-detail-image {
+  margin: 0;
+  min-height: 240px;
+  background: #0b2233;
+}
+.soft-detail-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .soft-arch {
@@ -801,6 +824,10 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .soft-arch-row-4,
   .soft-arch-mid,
   .soft-arch-core { grid-template-columns: 1fr 1fr; }
+  .soft-detail-item { grid-template-columns: 1fr; min-height: 0; }
+  .soft-detail-item:nth-child(even) .soft-detail-copy,
+  .soft-detail-item:nth-child(even) .soft-detail-image { order: 0; }
+  .soft-detail-image { min-height: 200px; height: 200px; }
 }
 
 @media (max-width: 760px) {
@@ -811,8 +838,7 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .values,
   .solution-grid,
   .product-grid,
-  .diff-grid,
-  .soft-detail-grid { grid-template-columns: 1fr; }
+  .diff-grid { grid-template-columns: 1fr; }
   .soft-arch-row-4,
   .soft-arch-mid,
   .soft-arch-core { grid-template-columns: 1fr; }

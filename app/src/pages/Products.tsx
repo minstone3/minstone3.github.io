@@ -12,12 +12,20 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 const productImages = [anchorImage, tagImage, dashboardImage]
 const fieldImages = [anchorImage, tagImage, dashboardImage, mobileImage]
+const pipelineImages = [anchorImage, coreImage, dbImage, uiImage, legacyImage]
 
 export default function Products() {
   const { t } = useLanguage()
   const { hash } = useLocation()
   const software = t.products.software
   const fieldAlts = [...t.products.items.map((item) => item.imageAlt), software.layers.field.mobileAlt]
+  const pipelineAlts = [
+    t.products.items[0].imageAlt,
+    software.layers.core.imageAlt,
+    software.layers.database.imageAlt,
+    software.layers.ui.imageAlt,
+    software.layers.legacy.imageAlt,
+  ]
 
   useEffect(() => {
     if (!hash) return
@@ -144,11 +152,16 @@ export default function Products() {
             <h3>{software.detail.title}</h3>
             <p className="soft-detail-lead">{software.detail.lead}</p>
             <div className="soft-detail-grid">
-              {software.detail.items.map((item) => (
+              {software.detail.items.map((item, index) => (
                 <article className="soft-detail-item" key={item.number}>
-                  <span className="mono">{item.number}</span>
-                  <h4>{item.title}</h4>
-                  <p>{item.description}</p>
+                  <div className="soft-detail-copy">
+                    <span className="mono">{item.number}</span>
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
+                  </div>
+                  <figure className="soft-detail-image media-blend">
+                    <img src={pipelineImages[index]} alt={pipelineAlts[index]} />
+                  </figure>
                 </article>
               ))}
             </div>
