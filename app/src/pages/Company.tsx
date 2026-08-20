@@ -1,4 +1,4 @@
-import factoryImage from '../assets/company-factory.png'
+import factoryImage from '../assets/company-factory.jpg'
 import precisionImage from '../assets/value-precision.png'
 import efficiencyImage from '../assets/value-efficiency.png'
 import autonomyImage from '../assets/value-autonomy.png'

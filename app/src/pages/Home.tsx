@@ -16,7 +16,7 @@ export default function Home() {
             <em>{t.home.title[1]}</em>
           </h1>
           <p className="hero-copy">{t.home.copy}</p>
-          <Link className="button" to="/solutions">
+          <Link className="button" to="/technology">
             {t.home.cta}
           </Link>
           <p className="hero-note">{t.home.note}</p>

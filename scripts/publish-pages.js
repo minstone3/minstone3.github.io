@@ -1,4 +1,5 @@
-import { copyFileSync, cpSync, existsSync, rmSync, writeFileSync } from 'node:fs'
+import { copyFileSync, cpSync, existsSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 copyFileSync('dist/index.html', 'dist/404.html')
 
@@ -10,3 +11,11 @@ cpSync('dist/assets', 'assets', { recursive: true })
 copyFileSync('dist/index.html', 'index.html')
 copyFileSync('dist/404.html', '404.html')
 writeFileSync('.nojekyll', '')
+
+for (const name of readdirSync('dist')) {
+  if (name === 'assets' || name === 'index.html' || name === '404.html') continue
+  const src = join('dist', name)
+  if (statSync(src).isFile()) {
+    copyFileSync(src, name)
+  }
+}

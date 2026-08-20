@@ -1,25 +1,19 @@
-import { Fragment } from 'react'
-import anchorImage from '../assets/solution-anchor.png'
-import tagImage from '../assets/solution-tag.png'
-import dashboardImage from '../assets/solution-dashboard.png'
-import edgeServerImage from '../assets/arch-edge-server.png'
-import aiCoreImage from '../assets/arch-ai-core.png'
-import middlewareImage from '../assets/arch-middleware.png'
-import adaptiveCloudImage from '../assets/arch-adaptive-cloud.png'
+import logisticsImage from '../assets/industry-logistics.png'
+import manufacturingImage from '../assets/industry-manufacturing.png'
+import retailHealthcareImage from '../assets/industry-retail-healthcare.png'
+import scaleImage from '../assets/industry-scale.png'
 import { useLanguage } from '../i18n/LanguageContext'
 
-const solutionImages = [anchorImage, tagImage, dashboardImage]
-const architectureImages = [edgeServerImage, aiCoreImage, middlewareImage, adaptiveCloudImage]
+const solutionImages = [logisticsImage, manufacturingImage, retailHealthcareImage]
 
 export default function Solutions() {
   const { t } = useLanguage()
 
   return (
-    <section className="section dark-section page-fill" aria-labelledby="solutions-title">
+    <section className="section page-fill" aria-labelledby="solutions-title">
       <div className="wrap">
         <div className="section-head">
           <div>
-            {/* <p className="section-label mono">02 / Solutions</p> */}
             <h2 id="solutions-title">
               {t.solutions.title[0]}
               <br />
@@ -28,36 +22,29 @@ export default function Solutions() {
           </div>
           <p className="section-intro">{t.solutions.intro}</p>
         </div>
-        <div className="solution-grid">
-          {t.solutions.items.map((solution, index) => (
-            <article className="solution" key={solution.mark}>
-              <figure className="solution-image media-blend">
-                <img src={solutionImages[index]} alt={solution.imageAlt} />
-              </figure>
-              <div className="solution-body">
-                <div className="solution-mark">{solution.mark}</div>
-                <h3>{solution.title}</h3>
-                <p>{solution.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="architecture mono">
-          {t.solutions.architecture.map((layer, index) => (
-            <Fragment key={layer.title}>
-              {index > 0 && <i />}
-              <article className="architecture-node">
-                <figure className="architecture-image media-blend">
-                  <img src={architectureImages[index]} alt={layer.imageAlt} />
+        <div className="industries">
+          <div className="industry-list">
+            {t.solutions.items.map((item, index) => (
+              <article className="industry" key={item.number}>
+                <figure className="industry-image media-blend">
+                  <img src={solutionImages[index]} alt={item.imageAlt} />
                 </figure>
-                <div className="architecture-copy">
-                  {layer.title}
-                  <br />
-                  <small>{layer.note}</small>
+                <span className="industry-number">{item.number}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </div>
+                <span className="industry-arrow">↗</span>
               </article>
-            </Fragment>
-          ))}
+            ))}
+          </div>
+          <figure className="stat">
+            <img src={scaleImage} alt={t.solutions.statAlt} />
+            <div className="stat-copy">
+              <strong>10,000+</strong>
+              <span>{t.solutions.stat}</span>
+            </div>
+          </figure>
         </div>
       </div>
     </section>
