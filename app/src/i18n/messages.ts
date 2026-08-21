@@ -14,6 +14,7 @@ export type Messages = {
     software: string
     technology: string
     solutions: string
+    news: string
     contact: string
     language: string
   }
@@ -82,6 +83,51 @@ export type Messages = {
     stat: string
     statAlt: string
   }
+  news: {
+    kicker: string
+    title: string
+    intro: string
+    write: string
+    writeTitle: string
+    writeIntro: string
+    loading: string
+    empty: string
+    missing: string
+    back: string
+    remove: string
+    confirmDelete: string
+    required: string
+    forbidden: string
+    loginTitle: string
+    loginIntro: string
+    password: string
+    loginSubmit: string
+    loginError: string
+    logout: string
+    relatedKicker: string
+    related: string
+    columns: { no: string; category: string; title: string; date: string }
+    categories: { notice: string; news: string; media: string }
+    form: {
+      category: string
+      date: string
+      title: string
+      titleEn: string
+      body: string
+      bodyEn: string
+      submit: string
+      cancel: string
+      media: string
+      mediaHint: string
+      mediaUrl: string
+      mediaCaption: string
+      mediaAdd: string
+      mediaFile: string
+      mediaRemove: string
+      mediaInvalid: string
+      mediaError: string
+    }
+  }
   contact: {
     kicker: string
     title: LinePair
@@ -106,6 +152,7 @@ export const messages: Record<Language, Messages> = {
       software: 'Software',
       technology: '기술',
       solutions: '솔루션',
+      news: '소식',
       contact: '파트너십 문의',
       language: '언어 선택',
     },
@@ -339,6 +386,51 @@ export const messages: Record<Language, Messages> = {
       stat: '태그 동시 관제와 100ms 이내 실시간 업데이트로 더 빠른 의사결정을 지원합니다.',
       statAlt: '수천 개 태그를 동시에 관제하는 실시간 관제 화면',
     },
+    news: {
+      kicker: 'NEWSROOM',
+      title: '오아식스 소식',
+      intro: '제품·기술·파트너십 관련 공지와 새 소식을 게시판에서 확인하세요.',
+      write: '소식 등록',
+      writeTitle: '새 소식 등록',
+      writeIntro: '제목과 본문을 입력하면 소식 게시판에 바로 올라갑니다. 이미지, 유튜브·비메오 링크, 동영상 파일도 함께 첨부할 수 있습니다. 로컬에서 등록한 글과 파일은 배포 후 모든 방문자에게 보입니다.',
+      loading: '소식을 불러오는 중입니다.',
+      empty: '등록된 소식이 없습니다.',
+      missing: '해당 소식을 찾을 수 없습니다.',
+      back: '목록으로',
+      remove: '삭제',
+      confirmDelete: '이 소식을 삭제할까요?',
+      required: '제목과 내용을 입력해 주세요.',
+      forbidden: '권한이 없어 등록하거나 삭제할 수 없습니다.',
+      loginTitle: '관리자 로그인',
+      loginIntro: '소식을 등록하거나 삭제하려면 관리자 비밀번호가 필요합니다.',
+      password: '비밀번호',
+      loginSubmit: '로그인',
+      loginError: '비밀번호가 올바르지 않습니다.',
+      logout: '로그아웃',
+      relatedKicker: 'RELATED',
+      related: '관련 콘텐츠',
+      columns: { no: '번호', category: '구분', title: '제목', date: '날짜' },
+      categories: { notice: '공지', news: '소식', media: '미디어' },
+      form: {
+        category: '구분',
+        date: '날짜',
+        title: '제목',
+        titleEn: 'Title (EN)',
+        body: '내용',
+        bodyEn: 'Body (EN)',
+        submit: '등록',
+        cancel: '취소',
+        media: '이미지 · 영상',
+        mediaHint: '이미지 URL, YouTube/Vimeo 링크, 또는 이미지·동영상 파일을 추가할 수 있습니다.',
+        mediaUrl: '미디어 URL',
+        mediaCaption: '캡션 (선택)',
+        mediaAdd: 'URL 추가',
+        mediaFile: '파일 첨부',
+        mediaRemove: '제거',
+        mediaInvalid: '지원하는 이미지·영상 주소가 아닙니다.',
+        mediaError: '파일을 첨부하지 못했습니다. 이미지이거나 로컬 개발 서버에서 다시 시도해 주세요.',
+      },
+    },
     contact: {
       kicker: 'Partnership / PoC / SI',
       title: ['현장의 다음 장면을', '함께 만들어 보세요.'],
@@ -361,6 +453,7 @@ export const messages: Record<Language, Messages> = {
       software: 'Software',
       technology: 'Technology',
       solutions: 'Solutions',
+      news: 'News',
       contact: 'Partnership',
       language: 'Language',
     },
@@ -593,6 +686,51 @@ export const messages: Record<Language, Messages> = {
       ],
       stat: 'Simultaneous control of 10,000+ tags with sub-100ms updates for faster decisions.',
       statAlt: 'Live control screen tracking thousands of tags at once',
+    },
+    news: {
+      kicker: 'NEWSROOM',
+      title: 'OAXIS news',
+      intro: 'Company notices, product updates, and partnership news.',
+      write: 'Post news',
+      writeTitle: 'Post a news item',
+      writeIntro: 'Title and body appear on the news board immediately. You can also attach images, YouTube/Vimeo links, and video files. Posts and files saved in local development are shown to every visitor after publish.',
+      loading: 'Loading news…',
+      empty: 'No posts yet.',
+      missing: 'This post could not be found.',
+      back: 'Back to list',
+      remove: 'Delete',
+      confirmDelete: 'Delete this post?',
+      required: 'Please enter a title and body.',
+      forbidden: 'You do not have permission to post or delete news.',
+      loginTitle: 'Admin sign-in',
+      loginIntro: 'An admin password is required to post or delete news.',
+      password: 'Password',
+      loginSubmit: 'Sign in',
+      loginError: 'The password is incorrect.',
+      logout: 'Sign out',
+      relatedKicker: 'RELATED',
+      related: 'Related content',
+      columns: { no: 'No.', category: 'Type', title: 'Title', date: 'Date' },
+      categories: { notice: 'Notice', news: 'News', media: 'Media' },
+      form: {
+        category: 'Type',
+        date: 'Date',
+        title: 'Title (KO)',
+        titleEn: 'Title (EN)',
+        body: 'Body (KO)',
+        bodyEn: 'Body (EN)',
+        submit: 'Publish',
+        cancel: 'Cancel',
+        media: 'Images · video',
+        mediaHint: 'Add an image URL, a YouTube/Vimeo link, or an image/video file.',
+        mediaUrl: 'Media URL',
+        mediaCaption: 'Caption (optional)',
+        mediaAdd: 'Add URL',
+        mediaFile: 'Attach file',
+        mediaRemove: 'Remove',
+        mediaInvalid: 'That is not a supported image or video address.',
+        mediaError: 'The file could not be attached. Use an image, or try again on the local dev server.',
+      },
     },
     contact: {
       kicker: 'Partnership / PoC / SI',

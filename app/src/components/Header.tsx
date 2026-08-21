@@ -105,6 +105,9 @@ export default function Header() {
           <NavLink to="/solutions" className={({ isActive }) => (isActive ? 'active' : undefined)}>
             {t.nav.solutions}
           </NavLink>
+          <NavLink to="/news" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+            {t.nav.news}
+          </NavLink>
         </nav>
         <div className="header-actions">
           <LanguageSwitch />

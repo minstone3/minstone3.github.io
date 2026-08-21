@@ -15,7 +15,10 @@ writeFileSync('.nojekyll', '')
 for (const name of readdirSync('dist')) {
   if (name === 'assets' || name === 'index.html' || name === '404.html') continue
   const src = join('dist', name)
-  if (statSync(src).isFile()) {
-    copyFileSync(src, name)
+  if (statSync(src).isDirectory()) {
+    if (existsSync(name)) rmSync(name, { recursive: true, force: true })
+    cpSync(src, name, { recursive: true })
+    continue
   }
+  copyFileSync(src, name)
 }

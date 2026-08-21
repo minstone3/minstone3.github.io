@@ -6,6 +6,11 @@ import Company from './pages/Company'
 import Products from './pages/Products'
 import Technology from './pages/Technology'
 import Solutions from './pages/Solutions'
+import News from './pages/News'
+import NewsLogin from './pages/NewsLogin'
+import NewsPostPage from './pages/NewsPost'
+import NewsWrite from './pages/NewsWrite'
+import { RequireNewsAdmin } from './components/RequireNewsAdmin'
 import Contact from './pages/Contact'
 
 export default function App() {
@@ -19,6 +24,17 @@ export default function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/technology" element={<Technology />} />
             <Route path="/solutions" element={<Solutions />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/news/login" element={<NewsLogin />} />
+            <Route
+              path="/news/write"
+              element={
+                <RequireNewsAdmin>
+                  <NewsWrite />
+                </RequireNewsAdmin>
+              }
+            />
+            <Route path="/news/:id" element={<NewsPostPage />} />
             <Route path="/use-cases" element={<Navigate to="/solutions" replace />} />
             <Route path="/industries" element={<Navigate to="/solutions" replace />} />
             <Route path="/contact" element={<Contact />} />
