@@ -1,11 +1,11 @@
 import { Fragment } from 'react'
-import edgeServerImage from '../assets/arch-edge-server.png'
-import aiCoreImage from '../assets/arch-ai-core.png'
-import middlewareImage from '../assets/arch-middleware.png'
-import adaptiveCloudImage from '../assets/arch-adaptive-cloud.png'
-import precisionImage from '../assets/diff-precision.jpg'
-import onestopImage from '../assets/diff-onestop.jpg'
-import onsiteImage from '../assets/diff-onsite.jpg'
+import edgeServerImage from '../assets/tech-edge.jpg'
+import aiCoreImage from '../assets/tech-ai-core.jpg'
+import middlewareImage from '../assets/tech-middleware.jpg'
+import adaptiveCloudImage from '../assets/tech-cloud.jpg'
+import precisionImage from '../assets/tech-precision.jpg'
+import onestopImage from '../assets/tech-onestop.jpg'
+import onsiteImage from '../assets/tech-onsite.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const architectureImages = [edgeServerImage, aiCoreImage, middlewareImage, adaptiveCloudImage]
@@ -44,7 +44,7 @@ export default function Technology() {
 
   return (
     <>
-      <section className="section dark-section" aria-labelledby="technology-title">
+      <section className="section dark-section tech-arch" aria-labelledby="technology-title">
         <div className="wrap">
           <div className="section-head">
             <div>
@@ -73,7 +73,7 @@ export default function Technology() {
               <Fragment key={layer.title}>
                 {index > 0 && <i />}
                 <article className="architecture-node">
-                  <figure className="architecture-image media-blend">
+                  <figure className="architecture-image">
                     <img src={architectureImages[index]} alt={layer.imageAlt} />
                   </figure>
                   <div className="architecture-copy">
@@ -88,7 +88,7 @@ export default function Technology() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="diff-title">
+      <section className="section tech-diff" aria-labelledby="diff-title">
         <div className="wrap">
           <div className="products-head">
             <p className="product-kicker mono">{t.technology.diff.kicker}</p>

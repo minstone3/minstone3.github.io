@@ -132,6 +132,8 @@ export type Messages = {
     kicker: string
     title: LinePair
     copy: string
+    visualAlt: string
+    related: Array<{ title: string; imageAlt: string }>
   }
   footer: { tagline: string }
 }
@@ -252,7 +254,7 @@ export const messages: Record<Language, Messages> = {
               number: '01',
               title: 'Field Hardware & Ingress',
               description:
-                '앵커가 태그의 UWB 신호를 수신하고, Gateway Ingress API가 raw ranging·배터리·상태 패킷을 코어로 전달합니다. Spatial Dashboard와 Android PDA는 같은 입출력 경로에서 현장 표시와 작업 입력을 수행합니다.',
+                '앵커가 태그의 UWB 위치 정보 신호를 수신하고, Gateway Ingress API가 raw ranging·배터리·상태 패킷을 코어로 전달합니다. Spatial Dashboard와 Android PDA는 같은 입출력 경로에서 현장 표시와 작업 입력을 수행합니다.',
             },
             {
               number: '02',
@@ -383,7 +385,7 @@ export const messages: Record<Language, Messages> = {
           imageAlt: '매장 고객 동선과 병원 의료기기를 함께 관제하는 현장',
         },
       ],
-      stat: '태그 동시 관제와 100ms 이내 실시간 업데이트로 더 빠른 의사결정을 지원합니다.',
+      stat: '태그 동시 관제와 실시간 업데이트로 더 빠른 의사결정을 지원합니다.',
       statAlt: '수천 개 태그를 동시에 관제하는 실시간 관제 화면',
     },
     news: {
@@ -435,6 +437,21 @@ export const messages: Record<Language, Messages> = {
       kicker: 'Partnership / PoC / SI',
       title: ['현장의 다음 장면을', '함께 만들어 보세요.'],
       copy: '스마트 물류·공장 현장 실증부터 WMS/MES/ERP 연동, 글로벌 공동 사업화까지 논의할 수 있습니다.',
+      visualAlt: '밝은 회의실에서 WMS·MES·위치 지도를 함께 보며 시스템 연동을 논의하는 장면',
+      related: [
+        {
+          title: '현장 PoC',
+          imageAlt: '밝은 공장 통로에서 AGV와 위치 지도를 확인하는 현장 실증',
+        },
+        {
+          title: '시스템 연동',
+          imageAlt: '밝은 사무실에서 WMS·MES·위치 지도를 연동해 보는 화면',
+        },
+        {
+          title: '공동 사업',
+          imageAlt: '밝은 물류 현장에서 피킹 동선 지도를 함께 검토하는 장면',
+        },
+      ],
     },
     footer: { tagline: 'AI 공간 지능 & 실시간 위치 플랫폼' },
   },
@@ -553,7 +570,7 @@ export const messages: Record<Language, Messages> = {
               number: '01',
               title: 'Field Hardware & Ingress',
               description:
-                'Anchors receive UWB signals from tags, and the Gateway Ingress API forwards raw ranging, battery, and status packets to the core. Spatial Dashboards and Android PDAs use the same path for on-site display and operator input.',
+                'Anchors receive UWB location information from tags, and the Gateway Ingress API forwards raw ranging, battery, and status packets to the core. Spatial Dashboards and Android PDAs use the same path for on-site display and operator input.',
             },
             {
               number: '02',
@@ -684,7 +701,7 @@ export const messages: Record<Language, Messages> = {
           imageAlt: 'Retail customer flow and hospital medical-device tracking together',
         },
       ],
-      stat: 'Simultaneous control of 10,000+ tags with sub-100ms updates for faster decisions.',
+      stat: 'Simultaneous control of 10,000+ tags with real-time updates for faster decisions.',
       statAlt: 'Live control screen tracking thousands of tags at once',
     },
     news: {
@@ -736,6 +753,21 @@ export const messages: Record<Language, Messages> = {
       kicker: 'Partnership / PoC / SI',
       title: ['Let’s build the next scene', 'of your operations.'],
       copy: 'We can discuss field PoCs for smart logistics and factories, WMS/MES/ERP integration, and global joint ventures.',
+      visualAlt: 'A bright meeting room where teams review WMS, MES, and a live location map',
+      related: [
+        {
+          title: 'Field PoC',
+          imageAlt: 'Bright factory aisle with AGVs and a live location map during a field PoC',
+        },
+        {
+          title: 'System integration',
+          imageAlt: 'Bright office reviewing connected WMS, MES, and location-map screens',
+        },
+        {
+          title: 'Joint ventures',
+          imageAlt: 'Sunlit warehouse meeting reviewing a picking-path map together',
+        },
+      ],
     },
     footer: { tagline: 'AI SPATIAL INTELLIGENCE & REAL-TIME LOCATION PLATFORM' },
   },

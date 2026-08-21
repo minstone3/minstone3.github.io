@@ -1,7 +1,7 @@
 import factoryImage from '../assets/company-factory.jpg'
-import precisionImage from '../assets/value-precision.png'
-import efficiencyImage from '../assets/value-efficiency.png'
-import autonomyImage from '../assets/value-autonomy.png'
+import precisionImage from '../assets/value-precision.jpg'
+import efficiencyImage from '../assets/value-efficiency.jpg'
+import autonomyImage from '../assets/value-autonomy.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const valueImages = [precisionImage, efficiencyImage, autonomyImage]
@@ -29,7 +29,7 @@ export default function Company() {
         <div className="values">
           {t.company.values.map((value, index) => (
             <article className="value" key={value.number}>
-              <figure className="value-image media-blend">
+              <figure className="value-image">
                 <img src={valueImages[index]} alt={value.imageAlt} />
               </figure>
               <div className="value-body">

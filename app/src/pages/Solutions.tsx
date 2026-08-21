@@ -1,7 +1,7 @@
-import logisticsImage from '../assets/industry-logistics.png'
-import manufacturingImage from '../assets/industry-manufacturing.png'
-import retailHealthcareImage from '../assets/industry-retail-healthcare.png'
-import scaleImage from '../assets/industry-scale.png'
+import logisticsImage from '../assets/solution-logistics.jpg'
+import manufacturingImage from '../assets/solution-manufacturing.jpg'
+import retailHealthcareImage from '../assets/solution-retail-healthcare.jpg'
+import scaleImage from '../assets/solution-scale.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const solutionImages = [logisticsImage, manufacturingImage, retailHealthcareImage]
@@ -26,7 +26,7 @@ export default function Solutions() {
           <div className="industry-list">
             {t.solutions.items.map((item, index) => (
               <article className="industry" key={item.number}>
-                <figure className="industry-image media-blend">
+                <figure className="industry-image">
                   <img src={solutionImages[index]} alt={item.imageAlt} />
                 </figure>
                 <span className="industry-number">{item.number}</span>

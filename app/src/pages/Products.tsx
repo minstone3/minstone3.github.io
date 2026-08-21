@@ -2,16 +2,19 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import anchorImage from '../assets/product-anchor.jpg'
 import tagImage from '../assets/product-tag.jpg'
+import tagCartImage from '../assets/product-tag-cart.jpg'
 import dashboardImage from '../assets/product-dashboard.jpg'
-import mobileImage from '../assets/sw-mobile.jpg'
-import legacyImage from '../assets/sw-legacy.jpg'
-import uiImage from '../assets/sw-ui.jpg'
-import coreImage from '../assets/sw-core.jpg'
-import dbImage from '../assets/sw-db.jpg'
+import dashboardSiteImage from '../assets/product-dashboard-site.jpg'
+import anchorCeilingImage from '../assets/product-anchor-ceiling.jpg'
+import mobileImage from '../assets/product-mobile.jpg'
+import legacyImage from '../assets/product-legacy.jpg'
+import uiImage from '../assets/product-ui.jpg'
+import coreImage from '../assets/product-core.jpg'
+import dbImage from '../assets/product-db.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const productImages = [anchorImage, tagImage, dashboardImage]
-const fieldImages = [anchorImage, tagImage, dashboardImage, mobileImage]
+const fieldImages = [anchorCeilingImage, tagCartImage, dashboardSiteImage, mobileImage]
 const pipelineImages = [anchorImage, coreImage, dbImage, uiImage, legacyImage]
 
 export default function Products() {
@@ -137,10 +140,12 @@ export default function Products() {
               <div className="soft-arch-row soft-arch-row-4">
                 {software.layers.field.items.map((item, index) => (
                   <div className="soft-arch-box is-field" key={item}>
-                    <figure className="soft-arch-thumb">
+                    <figure
+                      className={index === 0 ? 'soft-arch-thumb is-ceiling' : 'soft-arch-thumb'}
+                    >
                       <img src={fieldImages[index]} alt={fieldAlts[index]} />
                     </figure>
-                    {item}
+                    <span className="soft-arch-caption">{item}</span>
                   </div>
                 ))}
               </div>
@@ -159,7 +164,7 @@ export default function Products() {
                     <h4>{item.title}</h4>
                     <p>{item.description}</p>
                   </div>
-                  <figure className="soft-detail-image media-blend">
+                  <figure className="soft-detail-image">
                     <img src={pipelineImages[index]} alt={pipelineAlts[index]} />
                   </figure>
                 </article>
