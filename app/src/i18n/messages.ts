@@ -305,7 +305,7 @@ export const messages: Record<Language, Messages> = {
             { label: '측위 정밀도', value: '10cm 이내' },
             { label: '디스플레이', value: '4.2" 4색 E-paper (흑·백·적·황)' },
             { label: '배터리 수명', value: 'AI 슬립 모드 3년+' },
-            { label: '부가 기능', value: 'USB-C, 다기능버튼' },
+            { label: '부가 기능', value: 'USB 인터페이스, 다기능버튼, 멀티칼라 LED' },
           ],
         },
         {
@@ -471,17 +471,17 @@ export const messages: Record<Language, Messages> = {
       technology: 'Technology',
       solutions: 'Solutions',
       news: 'News',
-      contact: 'Partnership',
+      contact: 'Partnership inquiry',
       language: 'Language',
     },
     home: {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['Read the space,', 'reshape operations.'],
-      copy: 'With an AI spatial intelligence engine and centimeter-level real-time location tracking, we visualize the flow of people, assets, and inventory to build a fully autonomous operating system.',
-      proofs: ['People · Assets · Inventory', 'Centimeter-level RTLS', 'Autonomous operations'],
+      copy: 'With an AI spatial intelligence engine and centimeter-level real-time location tracking, we visualize the flow of people, assets, and inventory in real time to build a fully autonomous operations system.',
+      proofs: ['People · Assets · Inventory', 'cm-level real-time location', 'Autonomous operations'],
       cta: 'Explore the platform',
       note: 'OAXIS / SPATIAL INTELLIGENCE PLATFORM',
-      visualAlt: 'A bright hall where spatial flows of people and assets are being read in mint light'
+      visualAlt: 'A site where mint path lines make the space readable and the flow of people and assets visible'
     },
     company: {
       title: ['We connect every flow on site', 'into one language.'],
@@ -490,8 +490,8 @@ export const messages: Record<Language, Messages> = {
       values: [
         {
           number: '01 — PRECISION',
-          title: 'Centimeter-level positioning',
-          description: 'AI deep-learning correction holds 10cm accuracy even in high-multipath environments.',
+          title: 'cm-level ultra-precise tracking',
+          description: 'AI deep-learning correction holds 10cm accuracy even in high-multipath, reflective environments.',
           imageAlt: 'Warehouse assets with tags and centimeter-level coordinate overlays',
         },
         {
@@ -503,14 +503,14 @@ export const messages: Record<Language, Messages> = {
         {
           number: '03 — AUTONOMY',
           title: 'AI spatial intelligence',
-          description: 'Real-time 3D compute and optimal pathing maximize on-site efficiency.',
+          description: 'Real-time 3D computation and optimal routing maximize on-site efficiency.',
           imageAlt: 'Autonomous logistics robots following AI-optimized routes',
         },
       ],
     },
     products: {
       kicker: 'HARDWARE SPECS',
-      title: 'Hardware specifications',
+      title: 'Hardware specifications and key details',
       hardware: 'Hardware',
       software: {
         kicker: 'SOFTWARE ARCHITECTURE',
@@ -552,7 +552,7 @@ export const messages: Record<Language, Messages> = {
           },
           field: {
             title: 'Field Hardware & Ingress',
-            mobileAlt: 'Android PDA showing live location data on the warehouse floor',
+            mobileAlt: 'On-site Android PDA showing location information',
             items: [
               'Spatial Anchors',
               'Spatial Tags',
@@ -564,7 +564,7 @@ export const messages: Record<Language, Messages> = {
         detail: {
           kicker: 'SOFTWARE PIPELINE',
           title: 'Location data becomes coordinates, then work instructions.',
-          lead: 'OAXIS software turns UWB ranging packets from Spatial Anchors, Tags, and Dashboards into coordinates through the Adaptive RTLS engine, then carries them through 3D monitoring, on-site display, and legacy integration as one API pipeline. Hardware and software share the same architecture, so location data does not stop on a control screen.',
+          lead: 'OAXIS software turns UWB ranging packets from Spatial Anchors, Tags, and Dashboards into coordinates through the Adaptive RTLS engine, then carries them through 3D monitoring, on-site display, and legacy integration as one API pipeline. Hardware and software share the same architecture, so location data does not stop on a control screen — it becomes a work instruction.',
           items: [
             {
               number: '01',
@@ -576,7 +576,7 @@ export const messages: Record<Language, Messages> = {
               number: '02',
               title: 'Adaptive RTLS Engine',
               description:
-                'AI deep-learning signal correction reduces NLOS and metal-multipath error to produce centimeter-level coordinates. Tag Management and Signage Management control battery life, lighting, and e-paper content, while Error/Log Report records anomalies.',
+                'AI deep-learning signal correction reduces NLOS and metal-multipath error to produce centimeter-level coordinates. Tag Management and Signage Management control tag lifespan, lighting, and e-paper content, while Error/Log Report records anomalies.',
             },
             {
               number: '03',
@@ -616,12 +616,12 @@ export const messages: Record<Language, Messages> = {
           id: 'tag',
           mark: 'T',
           title: 'Spatial Tag',
-          imageAlt: '4-color Spatial Tag e-paper showing product, process, quantity, and operator info',
+          imageAlt: '4-color Spatial Tag e-paper showing product name, process, quantity, work order, and operator',
           specs: [
             { label: 'Accuracy', value: 'Within 10cm' },
             { label: 'Display', value: '4.2" 4-color e-paper (B/W/R/Y)' },
             { label: 'Battery', value: 'AI sleep mode, 3+ years' },
-            { label: 'Features', value: 'USB-C, multi-function button' },
+            { label: 'Features', value: 'USB I/F, multi-function button, multi-color LED' },
           ],
         },
         {
@@ -640,10 +640,10 @@ export const messages: Record<Language, Messages> = {
     },
     technology: {
       title: ['From edge to cloud,', 'we design the operating architecture.'],
-      intro: 'One platform that collects, interprets, and acts on field data.',
+      intro: 'One platform that collects, interprets, and acts on field data immediately.',
       overview: [
-        'A Real-Time Location System (RTLS) is made of three parts: RTLS hardware, software, and infrastructure. Depending on the project, people and assets carry or wear tags, locators are placed at key points in the space to send and receive tag signals, and software calculates and visualizes the coordinates.',
-        'OAXIS delivers centimeter-level indoor positioning accuracy with Ultra-wideband (UWB) precision tracking.',
+        'A real-time location system (RTLS) is complete when tag and anchor hardware, software that computes and visualizes coordinates, and on-site infrastructure work as one system. OAXIS designs and integrates all three with in-house technology. Attach tags where tracking is needed and place Spatial Anchors at key points, and everything from signal transmit/receive to coordinate calculation and on-screen display is handled inside our own stack.',
+        'The core is a UWB precision positioning engine. Short pulses across a wide frequency band measure time of arrival (ToA) and time difference of arrival (TDoA). With multi-anchor time synchronization and error correction, it delivers stable centimeter-level positioning even indoors.',
       ],
       pillars: ['Hardware', 'Software', 'Infrastructure'],
       architecture: [
@@ -654,11 +654,11 @@ export const messages: Record<Language, Messages> = {
       ],
       diff: {
         kicker: 'Differentiation',
-        title: 'Competitive comparison and differentiation',
+        title: 'Differentiation',
         intro: 'Three advantages of OAXIS versus beacon/RFID and generic UWB RTLS',
         items: [
           {
-            title: 'Precision · NLOS response',
+            title: 'Precision · NLOS handling',
             description:
               'Beacon/RFID stays at zone-level recognition, and generic UWB error grows in metal-heavy NLOS sites. OAXIS adds AI deep-learning signal correction to hold 10cm-level precision in harsh field conditions.',
             imageAlt: 'Warehouse aisle with a 10cm-level location pin',
@@ -670,17 +670,17 @@ export const messages: Record<Language, Messages> = {
             imageAlt: 'Anchors, tags, and displays connected into one platform',
           },
           {
-            title: 'On-site display · execution',
+            title: 'On-site display · execution link',
             description:
-              'Most RTLS only show location on a monitoring screen. E-paper Spatial Tags and Stripe LCDs display information on the floor and drive lighting, so location data becomes a work instruction immediately.',
-            imageAlt: 'Shelf with an e-paper tag and stripe LCD showing a work instruction',
+              'Most RTLS only show location on a monitoring screen. E-paper Spatial Tags and Spatial Dashboards display information on the floor and drive lighting, so location data becomes a work instruction immediately.',
+            imageAlt: 'A site where shelf e-paper tags and a Spatial Dashboard confirm work instructions',
           },
         ],
       },
     },
     solutions: {
-      title: ['Applied wherever', 'operations need data.'],
-      intro: 'Precise location data finds bottlenecks and recommends the next better action.',
+      title: ['Applied to every site', 'that needs data.'],
+      intro: 'Precise location data finds bottlenecks and recommends a better next action.',
       items: [
         {
           number: '01',
@@ -701,13 +701,13 @@ export const messages: Record<Language, Messages> = {
           imageAlt: 'Retail customer flow and hospital medical-device tracking together',
         },
       ],
-      stat: 'Simultaneous control of 10,000+ tags with real-time updates for faster decisions.',
+      stat: 'Simultaneous tag monitoring and real-time updates for faster decisions.',
       statAlt: 'Live control screen tracking thousands of tags at once',
     },
     news: {
       kicker: 'NEWSROOM',
       title: 'OAXIS news',
-      intro: 'Company notices, product updates, and partnership news.',
+      intro: 'Check notices and news on products, technology, and partnerships on the board.',
       write: 'Post news',
       writeTitle: 'Post a news item',
       writeIntro: 'Title and body appear on the news board immediately. You can also attach images, YouTube/Vimeo links, and video files. Posts and files saved in local development are shown to every visitor after publish.',
@@ -751,8 +751,8 @@ export const messages: Record<Language, Messages> = {
     },
     contact: {
       kicker: 'Partnership / PoC / SI',
-      title: ['Let’s build the next scene', 'of your operations.'],
-      copy: 'We can discuss field PoCs for smart logistics and factories, WMS/MES/ERP integration, and global joint ventures.',
+      title: ['Let’s build the next scene', 'on site together.'],
+      copy: 'We can discuss field PoCs for smart logistics and factories, WMS/MES/ERP integration, and global co-commercialization.',
       visualAlt: 'A bright meeting room where teams review WMS, MES, and a live location map',
       related: [
         {
@@ -764,7 +764,7 @@ export const messages: Record<Language, Messages> = {
           imageAlt: 'Bright office reviewing connected WMS, MES, and location-map screens',
         },
         {
-          title: 'Joint ventures',
+          title: 'Joint business',
           imageAlt: 'Sunlit warehouse meeting reviewing a picking-path map together',
         },
       ],
