@@ -170,20 +170,32 @@ h1, h2, h3, p { margin-top: 0; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 80px 0;
+  min-height: calc(100dvh - var(--header-h) - 52px);
+  padding: 72px 0;
   color: var(--white);
 }
 .hero .wrap {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: 56px 64px;
-  align-items: center;
+  z-index: 2;
 }
+.hero-copy-col { max-width: 36rem; }
 .kicker { margin: 0 0 20px; color: var(--mint); }
 h1 { max-width: 18ch; margin-bottom: 22px; font-size: clamp(40px, 5vw, 76px); line-height: 1.05; letter-spacing: -.075em; }
 h1 em { color: var(--lime); font-style: normal; }
-.hero-copy { max-width: 42em; margin-bottom: 32px; color: #c3d0d2; font-size: 17px; }
+.hero-copy { margin-bottom: 28px; color: #c3d0d2; font-size: 17px; }
+.hero-proofs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+  color: var(--mint);
+}
+.hero-proofs li + li {
+  padding-left: 22px;
+  border-left: 1px solid rgba(167, 239, 202, .28);
+}
 .button {
   display: inline-flex;
   align-items: center;
@@ -198,47 +210,34 @@ h1 em { color: var(--lime); font-style: normal; }
 .button:hover { background: var(--mint); }
 .hero-note { margin: 28px 0 0; color: #7f969c; font: 11px "DM Mono", monospace; }
 
-.visual {
-  position: relative;
-  padding: 18px;
-  border: 1px solid rgba(167, 239, 202, .35);
-  background: rgba(13, 38, 56, .82);
-  box-shadow: 16px 16px 0 rgba(167, 239, 202, .08);
-}
-.visual-top {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 14px;
-  color: #86a4a6;
-  border-bottom: 1px solid rgba(167, 239, 202, .2);
-}
-.live { color: var(--mint); }
-.live::before {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-right: 6px;
-  border-radius: 50%;
-  background: var(--mint);
-  content: "";
-}
-.map {
-  position: relative;
-  height: min(42vw, 380px);
-  margin: 16px 0 0;
+.hero-visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 34%;
+  z-index: 1;
+  margin: 0;
   overflow: hidden;
   background: var(--navy);
 }
-.map img {
+.hero-visual img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  filter: saturate(.78) contrast(.96) brightness(.95);
+  object-position: right center;
 }
-.visual-bottom { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; color: #91a9ac; }
-.visual-bottom strong { display: block; margin-top: 5px; color: var(--white); font-size: 18px; }
+.hero-visual::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--navy) 0%, color-mix(in srgb, var(--navy) 78%, transparent) 18%, transparent 46%),
+    linear-gradient(180deg, var(--navy) 0%, transparent 16%, transparent 86%, var(--navy) 100%),
+    linear-gradient(270deg, var(--navy) 0%, transparent 10%);
+  content: "";
+}
 
 .section { padding: 80px 0; }
 .section-head {
@@ -1261,8 +1260,29 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .tech-overview,
   .industries,
   .contact-main { grid-template-columns: 1fr; }
-  .hero .wrap { gap: 40px; }
-  .map { height: 280px; }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+    gap: 36px;
+  }
+  .hero-visual {
+    position: relative;
+    left: auto;
+    width: 100%;
+    height: 280px;
+    order: 2;
+  }
+  .hero-visual::after {
+    background:
+      linear-gradient(180deg, var(--navy) 0%, transparent 22%, transparent 78%, var(--navy) 100%),
+      linear-gradient(90deg, var(--navy) 0%, transparent 12%, transparent 88%, var(--navy) 100%);
+  }
+  .hero-proofs li + li {
+    padding-left: 0;
+    border-left: 0;
+  }
   .company-visual img,
   .contact-visual img { height: 240px; min-height: 0; max-height: none; }
   .soft-detail-item { grid-template-columns: 1fr; min-height: 0; }
@@ -1273,7 +1293,8 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
 }
 
 @media (max-width: 900px) {
-  .hero .wrap { gap: 32px; }
+  .hero { gap: 28px; padding: 48px 0; }
+  .hero-visual { height: 220px; }
   .company-visual img { height: 240px; }
   .section-intro { max-width: none; }
   .stat { min-height: 220px; }

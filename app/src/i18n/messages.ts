@@ -22,10 +22,10 @@ export type Messages = {
     kicker: string
     title: LinePair
     copy: string
+    proofs: [string, string, string]
     cta: string
     note: string
-    dashboardAria: string
-    dashboardAlt: string
+    visualAlt: string
   }
   company: {
     title: LinePair
@@ -162,10 +162,10 @@ export const messages: Record<Language, Messages> = {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['공간을 읽고,', '운영을 바꿉니다.'],
       copy: 'AI 공간 지능 엔진과 cm급 실시간 위치 추적 기술로 사람·자산·재고의 흐름을 실시간으로 가시화하여 완전한 자율 운영 체계를 구축합니다.',
+      proofs: ['사람 · 자산 · 재고', 'cm급 실시간 위치', '자율 운영'],
       cta: '플랫폼 살펴보기',
       note: 'OAXIS / 공간 지능 플랫폼',
-      dashboardAria: '실시간 공간 모니터링 화면 예시',
-      dashboardAlt: '실시간 3D 공간 위치 대시보드',
+      visualAlt: '공간이 민트색 동선으로 읽히며 사람과 자산의 흐름이 가시화된 현장'
     },
     company: {
       title: ['현장의 모든 흐름을', '하나의 언어로 연결합니다.'],
@@ -478,10 +478,10 @@ export const messages: Record<Language, Messages> = {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['Read the space,', 'reshape operations.'],
       copy: 'With an AI spatial intelligence engine and centimeter-level real-time location tracking, we visualize the flow of people, assets, and inventory to build a fully autonomous operating system.',
+      proofs: ['People · Assets · Inventory', 'Centimeter-level RTLS', 'Autonomous operations'],
       cta: 'Explore the platform',
       note: 'OAXIS / SPATIAL INTELLIGENCE PLATFORM',
-      dashboardAria: 'Example of a live spatial monitoring screen',
-      dashboardAlt: 'Live 3D spatial location dashboard',
+      visualAlt: 'A bright hall where spatial flows of people and assets are being read in mint light'
     },
     company: {
       title: ['We connect every flow on site', 'into one language.'],
