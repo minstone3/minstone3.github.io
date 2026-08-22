@@ -76,7 +76,7 @@ export default function Products() {
             <p className="section-intro software-intro">{software.intro}</p>
           </div>
 
-          <div className="soft-arch">
+          <div className="soft-arch" id="software-architecture">
             <div className="soft-arch-layer">
               <p className="soft-arch-label mono">{software.layers.legacy.title}</p>
               <figure className="soft-arch-visual">
@@ -152,7 +152,7 @@ export default function Products() {
             </div>
           </div>
 
-          <div className="soft-detail">
+          <div className="soft-detail" id="software-pipeline">
             <p className="product-kicker mono">{software.detail.kicker}</p>
             <h3>{software.detail.title}</h3>
             <p className="soft-detail-lead">{software.detail.lead}</p>

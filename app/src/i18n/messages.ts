@@ -41,6 +41,7 @@ export type Messages = {
       kicker: string
       title: string
       intro: string
+      nav: Array<{ id: string; title: string }>
       layers: {
         legacy: { title: string; imageAlt: string; items: string[] }
         ui: { title: string; imageAlt: string; items: string[] }
@@ -200,6 +201,10 @@ export const messages: Record<Language, Messages> = {
         kicker: 'SOFTWARE ARCHITECTURE',
         title: '플랫폼 소프트웨어 아키텍처',
         intro: '현장 하드웨어부터 레거시 시스템까지, 위치 데이터를 수집·해석·연동하는 하나의 소프트웨어 스택입니다.',
+        nav: [
+          { id: 'software-architecture', title: 'Software Architecture' },
+          { id: 'software-pipeline', title: 'Software Pipeline' },
+        ],
         layers: {
           legacy: {
             title: 'Legacy System & External Integration',
@@ -516,6 +521,10 @@ export const messages: Record<Language, Messages> = {
         kicker: 'SOFTWARE ARCHITECTURE',
         title: 'Platform software architecture',
         intro: 'One software stack that collects, interprets, and connects location data from field hardware through to legacy systems.',
+        nav: [
+          { id: 'software-architecture', title: 'Software Architecture' },
+          { id: 'software-pipeline', title: 'Software Pipeline' },
+        ],
         layers: {
           legacy: {
             title: 'Legacy System & External Integration',

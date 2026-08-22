@@ -92,11 +92,30 @@ export default function Header() {
               <NavLink
                 to="/products#software"
                 role="menuitem"
-                className={() => (location.hash === '#software' ? 'active' : undefined)}
+                className={() =>
+                  hash === '#software' || t.products.software.nav.some((item) => hash === `#${item.id}`)
+                    ? 'active'
+                    : undefined
+                }
                 onClick={() => setProductsOpen(false)}
               >
                 {t.nav.software}
               </NavLink>
+              <div className="nav-menu-children">
+                {t.products.software.nav.map((item) => (
+                  <NavLink
+                    key={item.id}
+                    to={`/products#${item.id}`}
+                    role="menuitem"
+                    className={() =>
+                      location.hash === `#${item.id}` ? 'nav-menu-sub active' : 'nav-menu-sub'
+                    }
+                    onClick={() => setProductsOpen(false)}
+                  >
+                    {item.title}
+                  </NavLink>
+                ))}
+              </div>
             </div>
           </div>
           <NavLink to="/technology" className={({ isActive }) => (isActive ? 'active' : undefined)}>
