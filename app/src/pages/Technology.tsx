@@ -105,15 +105,25 @@ export default function Technology() {
                 <article className="tech-hybrid-point" key={point.title}>
                   <h3>{point.title}</h3>
                   <p>{point.description}</p>
+                  <p className="tech-hybrid-example">{point.example}</p>
                 </article>
               ))}
             </div>
+          </div>
+          <div className="tech-hybrid-cases">
+            {t.technology.hybrid.cases.map((item) => (
+              <article className="tech-hybrid-case" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
           </div>
           <div className="tech-hybrid-merits">
             {t.technology.hybrid.merits.map((merit) => (
               <article className="tech-hybrid-merit" key={merit.title}>
                 <h3>{merit.title}</h3>
                 <p>{merit.description}</p>
+                <p className="tech-hybrid-example">{merit.example}</p>
               </article>
             ))}
           </div>

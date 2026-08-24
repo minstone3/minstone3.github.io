@@ -75,8 +75,9 @@ export type Messages = {
       title: string
       copy: string
       imageAlt: string
-      points: Array<{ title: string; description: string }>
-      merits: Array<{ title: string; description: string }>
+      points: Array<{ title: string; description: string; example: string }>
+      merits: Array<{ title: string; description: string; example: string }>
+      cases: Array<{ title: string; description: string }>
     }
     diff: {
       kicker: string
@@ -352,31 +353,52 @@ export const messages: Record<Language, Messages> = {
       ],
       hybrid: {
         kicker: 'HYBRID SPATIAL ENGINE',
-        title: '식별하는 UWB와, 비식별을 쫓는 레이더를 하나로.',
-        copy: '일반 RTLS는 태그가 있는 대상만 봅니다. Hybrid Spatial Engine은 식별 기능을 가진 UWB와 고성능 레이더를 같은 엔진에서 융합합니다. 태그가 있는 사람·자산은 ID와 cm급 좌표로 읽고, 태그가 없는 대상은 레이더로 실시간 추적해 현장의 빈 공간을 없앱니다.',
-        imageAlt: '천장 레이더가 비식별 대상을 추적하고 UWB 핀이 식별 객체를 표시하는 하이브리드 현장',
+        title: '식별과 비식별을 하나의 공간으로 읽습니다.',
+        copy: '일반 RTLS는 태그가 있는 대상만 봅니다. Hybrid Spatial Engine은 식별이 필요한 대상과, 태그가 없어 이름 없이 움직이는 대상을 같은 공간 모델에서 읽습니다. 누가인지는 UWB가 담당하고, 태그가 없는 존재와 경로는 고성능 레이더가 실시간으로 추적합니다. 물류·제조·리테일·헬스케어처럼 태그를 붙일 수 있는 대상과 붙이지 않는 대상이 한 공간에 섞인 현장에, 두 데이터를 한 시각으로 맞춰 운영합니다.',
+        imageAlt: '식별 객체와 비식별 대상이 한 공간에서 함께 추적되는 하이브리드 현장',
         points: [
           {
             title: 'UWB 식별 측위',
-            description: 'Spatial Tag를 부착한 사람·자산·재고를 식별하고, ToA/TDoA로 cm급 실시간 위치를 확보합니다.',
+            description:
+              'Spatial Tag를 부착한 사람·자산·재고를 ID와 함께 읽고, ToA/TDoA로 cm급 실시간 좌표를 냅니다. 작업 지시, 이력, 권한, 자산 관리처럼 “누구·무엇”이 필요한 대상에 씁니다.',
+            example: '예: 물류 피킹 작업자·셀 재고, 제조 재공품·공정 대차, 매장 고가 상품·병원 의료기기를 이름과 좌표로 표시합니다.',
           },
           {
             title: '고성능 레이더 추적',
-            description: '태그가 없는 사람·설비·적재물도 고성능 레이더로 실시간 탐지·추적해 비식별 대상의 움직임까지 읽습니다.',
+            description:
+              '태그가 없는 사람·설비·이동체도 60GHz FMCW 레이더로 탐지·추적합니다. 신원을 묻지 않고 위치와 움직임만 읽어, 태그를 붙일 수 없거나 붙일 필요가 없는 대상을 놓치지 않습니다.',
+            example: '예: 창고 방문객, 라인 통과 인원, 매장 고객·병원 보호자처럼 태그 없는 동선을 궤적으로 실시간 추적합니다.',
           },
         ],
         merits: [
           {
             title: '빈 공간 없는 가시화',
-            description: '태그가 없는 대상까지 레이더로 읽어, 식별·비식별 흐름을 한 지도에서 봅니다.',
+            description: '태그가 없는 대상까지 레이더로 읽어, 식별·비식별 흐름을 한 지도에서 봅니다. 태그 전용 RTLS가 놓치는 사각을 현장 유형과 관계없이 줄입니다.',
+            example: '예: 피킹 통로, 공정 통로, 매장 통로·병동 복도에 태그 없는 사람이 들어와도 혼잡·충돌 구간으로 표시됩니다.',
           },
           {
             title: '실시간 융합',
-            description: 'UWB 좌표와 레이더 궤적을 같은 시각에 맞춰 하나의 운영 화면으로 합칩니다.',
+            description: 'UWB 좌표와 레이더 궤적을 같은 시각에 맞춰 하나의 운영 화면으로 합칩니다. 식별된 이동체와 비식별 보행자가 같은 통로에 있어도 교차 상황을 한눈에 봅니다.',
+            example: '예: 물류 AGV, 공정 AMR, 병원 이송 카트가 태그 없는 사람과 경로가 겹치면 관제·현장 화면에 함께 경고합니다.',
           },
           {
             title: '식별이 필요할 때만 태그',
-            description: 'ID가 필요한 대상은 UWB로, 존재와 경로만 필요한 대상은 레이더로 처리합니다.',
+            description: 'ID가 필요한 대상은 UWB로, 존재와 경로만 필요한 대상은 레이더로 처리합니다. 모든 사람·물건에 태그를 붙이지 않고도 공간 운영이 가능합니다.',
+            example: '예: 정규 작업자·자산·의료기기는 태그, 방문객·고객·보호자는 레이더 동선만으로 관리합니다.',
+          },
+        ],
+        cases: [
+          {
+            title: '스마트 물류 & 풀필먼트',
+            description: '셀 재고·피킹 작업자는 UWB로 식별하고, 통로의 방문객과 태그 없는 팔레트는 레이더로 추적해 동선 충돌과 병목을 줄입니다.',
+          },
+          {
+            title: '스마트 제조 & 공정 관리',
+            description: '재공품·대차·작업자는 태그로 공정을 따라가고, 라인을 지나는 임시 인원과 적재는 레이더로 읽어 AGV/AMR 교차와 병목을 방지합니다.',
+          },
+          {
+            title: '스마트 리테일 & 헬스케어',
+            description: '직원·의료기기·고가 상품은 식별하고, 고객·보호자 동선은 태그 없이 레이더로 읽어 혼잡·대기·자산 위치를 함께 운영합니다.',
           },
         ],
       },
@@ -703,31 +725,52 @@ export const messages: Record<Language, Messages> = {
       ],
       hybrid: {
         kicker: 'HYBRID SPATIAL ENGINE',
-        title: 'Identify with UWB. Track the untagged with radar.',
-        copy: 'Typical RTLS sees only tagged targets. The Hybrid Spatial Engine fuses identity-capable UWB with high-performance radar. Tagged people and assets are read as IDs with centimeter-level coordinates, while untagged targets are tracked in real time so the site has no blind spots.',
-        imageAlt: 'Ceiling radar tracking untagged targets while UWB pins mark identified objects on the same floor',
+        title: 'Read identified and unidentified objects as one space.',
+        copy: 'Typical RTLS sees only tagged targets. The Hybrid Spatial Engine reads targets that need identity and targets that move without a tag in the same spatial model. UWB answers who and what; high-performance radar tracks presence and path in real time when there is no tag. On logistics, manufacturing, retail, and healthcare sites — where tagged and untagged subjects share one space — the two streams are time-aligned into one operations view.',
+        imageAlt: 'A site where identified objects and unidentified targets are tracked together in one space',
         points: [
           {
             title: 'UWB identified positioning',
-            description: 'People, assets, and inventory with Spatial Tags are identified and located in real time at centimeter level via ToA/TDoA.',
+            description:
+              'People, assets, and inventory with Spatial Tags are read with an ID and located in real time at centimeter level via ToA/TDoA. Use this when work orders, history, permissions, or asset control need a who and a what.',
+            example: 'Example: picking operators and cell stock, manufacturing WIP and process carts, and high-value retail goods or hospital devices appear with a name and coordinates.',
           },
           {
             title: 'High-performance radar tracking',
-            description: 'People, equipment, and loads without tags are detected and tracked in real time by high-performance radar.',
+            description:
+              'People, equipment, and movers without tags are detected and tracked by 60GHz FMCW radar. It reads position and motion without asking for identity, so targets you cannot or need not tag are not missed.',
+            example: 'Example: warehouse visitors, people crossing a production line, store shoppers, and hospital companions are followed as live untagged tracks.',
           },
         ],
         merits: [
           {
             title: 'Visibility without blind spots',
-            description: 'Radar reads untagged targets so identified and unidentified flows share one map.',
+            description: 'Radar reads untagged targets so identified and unidentified flows share one map, closing gaps that tag-only RTLS leaves open across site types.',
+            example: 'Example: an untagged person in a picking aisle, process corridor, store aisle, or ward hallway is shown as a congestion or collision zone.',
           },
           {
             title: 'Live fusion',
-            description: 'UWB coordinates and radar tracks are time-aligned into a single operations view.',
+            description: 'UWB coordinates and radar tracks are time-aligned into a single operations view, so identified movers and unidentified pedestrians in the same path are visible together.',
+            example: 'Example: if a logistics AGV, process AMR, or hospital transfer cart crosses an untagged person, monitoring and floor screens warn together.',
           },
           {
             title: 'Tags only when identity is needed',
-            description: 'Use UWB when you need an ID, and radar when you only need presence and path.',
+            description: 'Use UWB when you need an ID, and radar when you only need presence and path. The site can run without tagging every person or object.',
+            example: 'Example: regular operators, assets, and medical devices carry tags; visitors, shoppers, and companions are managed by radar path only.',
+          },
+        ],
+        cases: [
+          {
+            title: 'Smart logistics & fulfillment',
+            description: 'Identify cell stock and picking operators with UWB, and track aisle visitors and untagged pallets with radar to cut path conflicts and bottlenecks.',
+          },
+          {
+            title: 'Smart manufacturing & process control',
+            description: 'Follow WIP, carts, and operators with tags, and read temporary people and loads on the line with radar to prevent AGV/AMR crossings and bottlenecks.',
+          },
+          {
+            title: 'Smart retail & healthcare',
+            description: 'Identify staff, medical devices, and high-value goods, and read shopper or companion flow with radar so crowding, waiting, and asset location run together.',
           },
         ],
       },

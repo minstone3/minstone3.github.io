@@ -364,7 +364,7 @@ h2 { max-width: 22ch; margin-bottom: 0; font-size: clamp(32px, 3.6vw, 56px); lin
   letter-spacing: -.06em;
 }
 .tech-hybrid .software-intro {
-  max-width: 44em;
+  max-width: 52em;
   margin-top: 10px;
   font-size: 15px;
   line-height: 1.65;
@@ -407,6 +407,35 @@ h2 { max-width: 22ch; margin-bottom: 0; font-size: clamp(32px, 3.6vw, 56px); lin
   color: #c3d0d2;
   font-size: 14px;
   line-height: 1.65;
+}
+.tech-hybrid-point .tech-hybrid-example,
+.tech-hybrid-merit .tech-hybrid-example {
+  margin-top: 10px;
+  color: #9ab8ae;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.tech-hybrid-cases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.tech-hybrid-case {
+  padding: 18px 18px 20px;
+  border: 1px solid rgba(167, 239, 202, .18);
+  background: #0b2233;
+}
+.tech-hybrid-case h3 {
+  margin: 0 0 8px;
+  color: var(--mint);
+  font-size: 15px;
+}
+.tech-hybrid-case p {
+  margin: 0;
+  color: #c3d0d2;
+  font-size: 13px;
+  line-height: 1.6;
 }
 .tech-hybrid-merits {
   display: grid;
@@ -1402,6 +1431,7 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .product-grid,
   .diff-grid,
   .tech-hybrid-merits,
+  .tech-hybrid-cases,
   .contact-related { grid-template-columns: 1fr; }
   .news-head { flex-direction: column; align-items: flex-start; }
   .news-row,
