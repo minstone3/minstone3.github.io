@@ -3,6 +3,7 @@ import edgeServerImage from '../assets/tech-edge.jpg'
 import aiCoreImage from '../assets/tech-ai-core.jpg'
 import middlewareImage from '../assets/tech-middleware.jpg'
 import adaptiveCloudImage from '../assets/tech-cloud.jpg'
+import hybridRadarImage from '../assets/tech-hybrid-radar.jpg'
 import precisionImage from '../assets/tech-precision.jpg'
 import onestopImage from '../assets/tech-onestop.jpg'
 import onsiteImage from '../assets/tech-onsite.jpg'
@@ -83,6 +84,37 @@ export default function Technology() {
                   </div>
                 </article>
               </Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section tech-hybrid" aria-labelledby="hybrid-title">
+        <div className="wrap">
+          <div className="products-head">
+            <p className="product-kicker mono">{t.technology.hybrid.kicker}</p>
+            <h2 id="hybrid-title">{t.technology.hybrid.title}</h2>
+            <p className="section-intro software-intro">{t.technology.hybrid.copy}</p>
+          </div>
+          <div className="tech-hybrid-grid">
+            <figure className="tech-hybrid-visual">
+              <img src={hybridRadarImage} alt={t.technology.hybrid.imageAlt} />
+            </figure>
+            <div className="tech-hybrid-points">
+              {t.technology.hybrid.points.map((point) => (
+                <article className="tech-hybrid-point" key={point.title}>
+                  <h3>{point.title}</h3>
+                  <p>{point.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="tech-hybrid-merits">
+            {t.technology.hybrid.merits.map((merit) => (
+              <article className="tech-hybrid-merit" key={merit.title}>
+                <h3>{merit.title}</h3>
+                <p>{merit.description}</p>
+              </article>
             ))}
           </div>
         </div>

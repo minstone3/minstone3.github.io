@@ -70,6 +70,14 @@ export type Messages = {
     overview: [string, string]
     pillars: [string, string, string]
     architecture: Array<{ title: string; note: string; imageAlt: string }>
+    hybrid: {
+      kicker: string
+      title: string
+      copy: string
+      imageAlt: string
+      points: Array<{ title: string; description: string }>
+      merits: Array<{ title: string; description: string }>
+    }
     diff: {
       kicker: string
       title: string
@@ -162,8 +170,8 @@ export const messages: Record<Language, Messages> = {
     home: {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['공간을 읽고,', '운영을 바꿉니다.'],
-      copy: 'AI 공간 지능 엔진과 cm급 실시간 위치 추적 기술로 사람·자산·재고의 흐름을 실시간으로 가시화하여 완전한 자율 운영 체계를 구축합니다.',
-      proofs: ['사람 · 자산 · 재고', 'cm급 실시간 위치', '자율 운영'],
+      copy: 'AI 공간 지능 엔진과 cm급 UWB 식별 측위, 고성능 레이더 비식별 추적으로 사람·자산·재고의 흐름을 실시간으로 가시화하여 완전한 자율 운영 체계를 구축합니다.',
+      proofs: ['사람 · 자산 · 재고', 'UWB 식별 · 레이더 추적', '자율 운영'],
       cta: '플랫폼 살펴보기',
       note: 'OAXIS / 공간 지능 플랫폼',
       visualAlt: '공간이 민트색 동선으로 읽히며 사람과 자산의 흐름이 가시화된 현장'
@@ -200,7 +208,7 @@ export const messages: Record<Language, Messages> = {
       software: {
         kicker: 'SOFTWARE ARCHITECTURE',
         title: '플랫폼 소프트웨어 아키텍처',
-        intro: '현장 하드웨어부터 레거시 시스템까지, 위치 데이터를 수집·해석·연동하는 하나의 소프트웨어 스택입니다.',
+        intro: 'UWB 앵커·태그와 고성능 레이더에서 레거시 시스템까지, 식별·비식별 위치 데이터를 수집·해석·연동하는 하나의 소프트웨어 스택입니다.',
         nav: [
           { id: 'software-architecture', title: 'Software Architecture' },
           { id: 'software-pipeline', title: 'Software Pipeline' },
@@ -223,9 +231,10 @@ export const messages: Record<Language, Messages> = {
           },
           core: {
             title: 'Core API Gateways & Processing Engines',
-            imageAlt: 'Adaptive RTLS 엔진과 API가 위치 데이터를 처리하는 코어',
+            imageAlt: 'Adaptive RTLS 엔진과 Hybrid Spatial Engine이 위치 데이터를 처리하는 코어',
             items: [
               { name: 'Adaptive RTLS Engine (AI)', tone: 'core' },
+              { name: 'Hybrid Spatial Engine', tone: 'core' },
               { name: 'Tag Management' },
               { name: 'GW Ingress API (Raw)', tone: 'api' },
               { name: 'Signage Management' },
@@ -253,19 +262,19 @@ export const messages: Record<Language, Messages> = {
         detail: {
           kicker: 'SOFTWARE PIPELINE',
           title: '위치 데이터가 좌표가 되고, 운영 지시가 됩니다.',
-          lead: '오아식스 소프트웨어는 Spatial Anchor·Tag·Dashboard에서 들어오는 UWB ranging 패킷을 Adaptive RTLS 엔진으로 좌표화하고, 3D 관제·현장 표시·레거시 연동까지 하나의 API 파이프라인으로 처리합니다. 하드웨어와 소프트웨어가 같은 아키텍처를 공유하므로 위치 데이터가 관제 화면에 머무르지 않고 작업 지시로 이어집니다.',
+          lead: '오아식스 소프트웨어는 Spatial Anchor·Tag에서 들어오는 UWB ranging과 고성능 레이더 궤적을 Adaptive RTLS Engine과 Hybrid Spatial Engine으로 좌표화·융합하고, 3D 관제·현장 표시·레거시 연동까지 하나의 API 파이프라인으로 처리합니다. 하드웨어와 소프트웨어가 같은 아키텍처를 공유하므로 위치 데이터가 관제 화면에 머무르지 않고 작업 지시로 이어집니다.',
           items: [
             {
               number: '01',
               title: 'Field Hardware & Ingress',
               description:
-                '앵커가 태그의 UWB 위치 정보 신호를 수신하고, Gateway Ingress API가 raw ranging·배터리·상태 패킷을 코어로 전달합니다. Spatial Dashboard와 Android PDA는 같은 입출력 경로에서 현장 표시와 작업 입력을 수행합니다.',
+                '앵커가 태그의 UWB 위치 정보 신호를 수신하고, 고성능 레이더가 비식별 대상의 궤적을 함께 수집합니다. Gateway Ingress API가 raw ranging·레이더 포인트·배터리·상태 패킷을 코어로 전달합니다. Spatial Dashboard와 Android PDA는 같은 입출력 경로에서 현장 표시와 작업 입력을 수행합니다.',
             },
             {
               number: '02',
-              title: 'Adaptive RTLS Engine',
+              title: 'Adaptive RTLS · Hybrid Spatial Engine',
               description:
-                'AI 딥러닝 신호 보정이 NLOS·철제 난반사 오차를 줄여 센티미터급 좌표를 산출합니다. Tag Management와 Signage Management가 태그 수명·점등·E-paper 콘텐츠를 제어하고, Error/Log Report가 이상 이벤트를 기록합니다.',
+                'Adaptive RTLS Engine은 AI 딥러닝 신호 보정으로 NLOS·철제 난반사 오차를 줄여 UWB 식별 좌표를 센티미터급으로 산출합니다. Hybrid Spatial Engine은 그 식별 좌표와 고성능 레이더의 비식별 궤적을 같은 시각에 융합해 실시간 추적합니다. Tag Management와 Signage Management가 태그 수명·점등·E-paper 콘텐츠를 제어하고, Error/Log Report가 이상 이벤트를 기록합니다.',
             },
             {
               number: '03',
@@ -295,8 +304,8 @@ export const messages: Record<Language, Messages> = {
           title: 'Spatial Anchor',
           imageAlt: '안테나가 있는 Spatial Anchor 게이트웨이',
           specs: [
-            { label: '무선 규격', value: 'UWB (IEEE 802.15.4z), 2.4GHz (IEEE 802.15.4)' },
-            { label: '수신 범위', value: '반경 50m 이상' },
+            { label: '무선 규격', value: 'UWB (IEEE 802.15.4z), 2.4GHz (IEEE 802.15.4), 60GHz FMCW RADAR' },
+            { label: '통신 범위', value: '반경 50m 이상' },
             { label: '전원 방식', value: 'PoE / DC 12V' },
             { label: '설치 형태', value: '천장 / 벽면' },
           ],
@@ -331,20 +340,50 @@ export const messages: Record<Language, Messages> = {
       title: ['엣지부터 클라우드까지,', '운영 아키텍처를 설계합니다.'],
       intro: '현장의 데이터를 모으고, 해석하고, 바로 실행할 수 있는 하나의 플랫폼입니다.',
       overview: [
-        '실시간 위치 측위 시스템(RTLS)은 태그·앵커 하드웨어, 좌표를 산출하고 시각화하는 소프트웨어, 그리고 현장 인프라가 하나의 체계로 동작할 때 완성됩니다. 오아식스는 이 세 요소를 자체 기술로 설계·연동합니다. 위치 추적이 필요한 공간에 태그를 부착하고 주요 지점에 Spatial Anchor를 배치하면, 신호 송수신부터 좌표 계산·화면 표시까지 자사 스택 안에서 처리됩니다.',
-        '핵심은 초광대역(UWB) 기반의 정밀 측위 엔진입니다. 넓은 주파수 대역의 짧은 펄스로 전파 도착 시각(ToA)과 시각 차(TDoA)를 측정하고, 다중 Spatial Anchor 시각 동기와 오차 보정을 적용해 실내에서도 센티미터 수준의 위치를 안정적으로 제공합니다.',
+        '실시간 위치 측위 시스템(RTLS)은 태그·앵커·레이더 하드웨어, 좌표를 산출하고 시각화하는 소프트웨어, 그리고 현장 인프라가 하나의 체계로 동작할 때 완성됩니다. 오아식스는 이 세 요소를 자체 기술로 설계·연동합니다. 식별이 필요한 대상에는 태그를 부착하고, 태그가 없는 대상은 고성능 레이더로 추적하며, 주요 지점에 Spatial Anchor를 배치하면 신호 송수신부터 좌표 계산·화면 표시까지 자사 스택 안에서 처리됩니다.',
+        '핵심은 초광대역(UWB) 기반의 정밀 측위와 고성능 레이더를 결합한 Hybrid Spatial Engine입니다. UWB가 태그를 식별해 cm급 좌표를 내고, 레이더가 태그가 없는 대상을 실시간으로 추적합니다. 다중 Spatial Anchor 시각 동기와 오차 보정을 적용해 실내에서도 식별·비식별 객체를 하나의 공간으로 안정적으로 제공합니다.',
       ],
       pillars: ['Hardware', 'Software', 'Infrastructure'],
       architecture: [
         { title: 'EDGE SERVER', note: '정제 · 연산', imageAlt: '현장 데이터를 정제하고 연산하는 엣지 서버' },
-        { title: 'AI CORE', note: '보정 · 동선', imageAlt: '위치 보정과 동선을 계산하는 AI 코어' },
+        { title: 'AI CORE', note: '보정 · 하이브리드 탐지', imageAlt: '위치 보정과 식별·비식별 객체를 계산하는 AI 코어' },
         { title: 'MIDDLEWARE', note: '레거시 연동', imageAlt: 'WMS·MES·ERP와 연동하는 미들웨어' },
         { title: 'ADAPTIVE CLOUD', note: '3D 공간 연산', imageAlt: '3D 공간 연산을 수행하는 어댑티브 클라우드' },
       ],
+      hybrid: {
+        kicker: 'HYBRID SPATIAL ENGINE',
+        title: '식별하는 UWB와, 비식별을 쫓는 레이더를 하나로.',
+        copy: '일반 RTLS는 태그가 있는 대상만 봅니다. Hybrid Spatial Engine은 식별 기능을 가진 UWB와 고성능 레이더를 같은 엔진에서 융합합니다. 태그가 있는 사람·자산은 ID와 cm급 좌표로 읽고, 태그가 없는 대상은 레이더로 실시간 추적해 현장의 빈 공간을 없앱니다.',
+        imageAlt: '천장 레이더가 비식별 대상을 추적하고 UWB 핀이 식별 객체를 표시하는 하이브리드 현장',
+        points: [
+          {
+            title: 'UWB 식별 측위',
+            description: 'Spatial Tag를 부착한 사람·자산·재고를 식별하고, ToA/TDoA로 cm급 실시간 위치를 확보합니다.',
+          },
+          {
+            title: '고성능 레이더 추적',
+            description: '태그가 없는 사람·설비·적재물도 고성능 레이더로 실시간 탐지·추적해 비식별 대상의 움직임까지 읽습니다.',
+          },
+        ],
+        merits: [
+          {
+            title: '빈 공간 없는 가시화',
+            description: '태그가 없는 대상까지 레이더로 읽어, 식별·비식별 흐름을 한 지도에서 봅니다.',
+          },
+          {
+            title: '실시간 융합',
+            description: 'UWB 좌표와 레이더 궤적을 같은 시각에 맞춰 하나의 운영 화면으로 합칩니다.',
+          },
+          {
+            title: '식별이 필요할 때만 태그',
+            description: 'ID가 필요한 대상은 UWB로, 존재와 경로만 필요한 대상은 레이더로 처리합니다.',
+          },
+        ],
+      },
       diff: {
         kicker: 'Differentiation',
         title: '차별화',
-        intro: '비콘·RFID 및 일반 UWB RTLS 대비 오아식스만의 세 가지 경쟁 우위',
+        intro: '비콘·RFID 및 태그 전용 UWB RTLS 대비 오아식스만의 세 가지 경쟁 우위. 식별은 UWB로, 비식별 실시간 추적은 고성능 레이더로 보완합니다.',
         items: [
           {
             title: '정밀도 · NLOS 대응',
@@ -482,8 +521,8 @@ export const messages: Record<Language, Messages> = {
     home: {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['Read the space,', 'reshape operations.'],
-      copy: 'With an AI spatial intelligence engine and centimeter-level real-time location tracking, we visualize the flow of people, assets, and inventory in real time to build a fully autonomous operations system.',
-      proofs: ['People · Assets · Inventory', 'cm-level real-time location', 'Autonomous operations'],
+      copy: 'With an AI spatial intelligence engine, centimeter-level UWB identified positioning, and high-performance radar tracking of untagged targets, we visualize the flow of people, assets, and inventory in real time to build a fully autonomous operations system.',
+      proofs: ['People · Assets · Inventory', 'UWB identity · radar track', 'Autonomous operations'],
       cta: 'Explore the platform',
       note: 'OAXIS / SPATIAL INTELLIGENCE PLATFORM',
       visualAlt: 'A site where mint path lines make the space readable and the flow of people and assets visible'
@@ -520,7 +559,7 @@ export const messages: Record<Language, Messages> = {
       software: {
         kicker: 'SOFTWARE ARCHITECTURE',
         title: 'Platform software architecture',
-        intro: 'One software stack that collects, interprets, and connects location data from field hardware through to legacy systems.',
+        intro: 'One software stack that collects, interprets, and connects identified and unidentified location data — from UWB anchors, tags, and high-performance radar through to legacy systems.',
         nav: [
           { id: 'software-architecture', title: 'Software Architecture' },
           { id: 'software-pipeline', title: 'Software Pipeline' },
@@ -543,9 +582,10 @@ export const messages: Record<Language, Messages> = {
           },
           core: {
             title: 'Core API Gateways & Processing Engines',
-            imageAlt: 'Adaptive RTLS engine and APIs processing location data',
+            imageAlt: 'Adaptive RTLS engine and Hybrid Spatial Engine processing location data',
             items: [
               { name: 'Adaptive RTLS Engine (AI)', tone: 'core' },
+              { name: 'Hybrid Spatial Engine', tone: 'core' },
               { name: 'Tag Management' },
               { name: 'GW Ingress API (Raw)', tone: 'api' },
               { name: 'Signage Management' },
@@ -573,19 +613,19 @@ export const messages: Record<Language, Messages> = {
         detail: {
           kicker: 'SOFTWARE PIPELINE',
           title: 'Location data becomes coordinates, then work instructions.',
-          lead: 'OAXIS software turns UWB ranging packets from Spatial Anchors, Tags, and Dashboards into coordinates through the Adaptive RTLS engine, then carries them through 3D monitoring, on-site display, and legacy integration as one API pipeline. Hardware and software share the same architecture, so location data does not stop on a control screen — it becomes a work instruction.',
+          lead: 'OAXIS software turns UWB ranging from Spatial Anchors and Tags, plus high-performance radar tracks, into coordinates through the Adaptive RTLS Engine and Hybrid Spatial Engine, then carries them through 3D monitoring, on-site display, and legacy integration as one API pipeline. Hardware and software share the same architecture, so location data does not stop on a control screen — it becomes a work instruction.',
           items: [
             {
               number: '01',
               title: 'Field Hardware & Ingress',
               description:
-                'Anchors receive UWB location information from tags, and the Gateway Ingress API forwards raw ranging, battery, and status packets to the core. Spatial Dashboards and Android PDAs use the same path for on-site display and operator input.',
+                'Anchors receive UWB location information from tags, and high-performance radar collects tracks of unidentified targets. The Gateway Ingress API forwards raw ranging, radar points, battery, and status packets to the core. Spatial Dashboards and Android PDAs use the same path for on-site display and operator input.',
             },
             {
               number: '02',
-              title: 'Adaptive RTLS Engine',
+              title: 'Adaptive RTLS · Hybrid Spatial Engine',
               description:
-                'AI deep-learning signal correction reduces NLOS and metal-multipath error to produce centimeter-level coordinates. Tag Management and Signage Management control tag lifespan, lighting, and e-paper content, while Error/Log Report records anomalies.',
+                'The Adaptive RTLS Engine uses AI deep-learning signal correction to cut NLOS and metal-multipath error and produce centimeter-level UWB identity coordinates. The Hybrid Spatial Engine time-aligns those identified coordinates with high-performance radar tracks of untagged targets. Tag Management and Signage Management control tag lifespan, lighting, and e-paper content, and Error/Log Report records anomalies.',
             },
             {
               number: '03',
@@ -615,7 +655,7 @@ export const messages: Record<Language, Messages> = {
           title: 'Spatial Anchor',
           imageAlt: 'Spatial Anchor gateway with dual antennas',
           specs: [
-            { label: 'Wireless', value: 'UWB (IEEE 802.15.4z), 2.4GHz (IEEE 802.15.4)' },
+            { label: 'Wireless', value: 'UWB (IEEE 802.15.4z), 2.4GHz (IEEE 802.15.4), 60GHz FMCW RADAR' },
             { label: 'Range', value: '50m+ radius' },
             { label: 'Power', value: 'PoE / DC 12V' },
             { label: 'Mounting', value: 'Ceiling / Wall' },
@@ -651,20 +691,50 @@ export const messages: Record<Language, Messages> = {
       title: ['From edge to cloud,', 'we design the operating architecture.'],
       intro: 'One platform that collects, interprets, and acts on field data immediately.',
       overview: [
-        'A real-time location system (RTLS) is complete when tag and anchor hardware, software that computes and visualizes coordinates, and on-site infrastructure work as one system. OAXIS designs and integrates all three with in-house technology. Attach tags where tracking is needed and place Spatial Anchors at key points, and everything from signal transmit/receive to coordinate calculation and on-screen display is handled inside our own stack.',
-        'The core is a UWB precision positioning engine. Short pulses across a wide frequency band measure time of arrival (ToA) and time difference of arrival (TDoA). With multi-anchor time synchronization and error correction, it delivers stable centimeter-level positioning even indoors.',
+        'A real-time location system (RTLS) is complete when tag, anchor, and radar hardware, software that computes and visualizes coordinates, and on-site infrastructure work as one system. OAXIS designs and integrates all three with in-house technology. Attach tags where identity is needed, track untagged targets with high-performance radar, and place Spatial Anchors at key points — then everything from signal transmit/receive to coordinate calculation and on-screen display is handled inside our own stack.',
+        'The core is the Hybrid Spatial Engine, which combines Ultra-wideband (UWB) precision positioning with high-performance radar. UWB identifies tagged objects at centimeter-level coordinates, while radar tracks untagged targets in real time. With multi-anchor time synchronization and error correction, identified and unidentified objects stay in one stable indoor space.',
       ],
       pillars: ['Hardware', 'Software', 'Infrastructure'],
       architecture: [
         { title: 'EDGE SERVER', note: 'Cleanse · Compute', imageAlt: 'Edge server refining and computing field data' },
-        { title: 'AI CORE', note: 'Correct · Route', imageAlt: 'AI core correcting location and computing paths' },
+        { title: 'AI CORE', note: 'Correct · Hybrid detection', imageAlt: 'AI core correcting location and detecting identified and unidentified objects' },
         { title: 'MIDDLEWARE', note: 'Legacy Integration', imageAlt: 'Middleware connecting WMS, MES, and ERP' },
         { title: 'ADAPTIVE CLOUD', note: '3D Spatial Compute', imageAlt: 'Adaptive cloud performing 3D spatial compute' },
       ],
+      hybrid: {
+        kicker: 'HYBRID SPATIAL ENGINE',
+        title: 'Identify with UWB. Track the untagged with radar.',
+        copy: 'Typical RTLS sees only tagged targets. The Hybrid Spatial Engine fuses identity-capable UWB with high-performance radar. Tagged people and assets are read as IDs with centimeter-level coordinates, while untagged targets are tracked in real time so the site has no blind spots.',
+        imageAlt: 'Ceiling radar tracking untagged targets while UWB pins mark identified objects on the same floor',
+        points: [
+          {
+            title: 'UWB identified positioning',
+            description: 'People, assets, and inventory with Spatial Tags are identified and located in real time at centimeter level via ToA/TDoA.',
+          },
+          {
+            title: 'High-performance radar tracking',
+            description: 'People, equipment, and loads without tags are detected and tracked in real time by high-performance radar.',
+          },
+        ],
+        merits: [
+          {
+            title: 'Visibility without blind spots',
+            description: 'Radar reads untagged targets so identified and unidentified flows share one map.',
+          },
+          {
+            title: 'Live fusion',
+            description: 'UWB coordinates and radar tracks are time-aligned into a single operations view.',
+          },
+          {
+            title: 'Tags only when identity is needed',
+            description: 'Use UWB when you need an ID, and radar when you only need presence and path.',
+          },
+        ],
+      },
       diff: {
         kicker: 'Differentiation',
         title: 'Differentiation',
-        intro: 'Three advantages of OAXIS versus beacon/RFID and generic UWB RTLS',
+        intro: 'Three advantages of OAXIS versus beacon/RFID and tag-only UWB RTLS. Identity comes from UWB; real-time tracking of untagged targets is completed by high-performance radar.',
         items: [
           {
             title: 'Precision · NLOS handling',

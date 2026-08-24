@@ -89,7 +89,7 @@ const PAGE_SEEDS: PageSeed[] = [
   {
     to: '/technology',
     imageKey: 'technology',
-    keywords: ['uwb', 'rtls', '위치', '측위', '아키텍처', '정밀', 'nlos', 'ai', '로케이터', '기술'],
+    keywords: ['uwb', 'rtls', '위치', '측위', '아키텍처', '정밀', 'nlos', 'ai', '로케이터', '기술', 'hybrid', '하이브리드', '식별', '비식별', 'radar', '레이더'],
     kicker: (t) => t.nav.technology,
     title: (t) => t.technology.title.join(' '),
     description: (t) => t.technology.intro,
@@ -105,7 +105,7 @@ const PAGE_SEEDS: PageSeed[] = [
   {
     to: '/products#software',
     imageKey: 'software',
-    keywords: ['소프트웨어', 'software', '엔진', 'mongodb', 'api', '파이프라인', '플랫폼'],
+    keywords: ['소프트웨어', 'software', '엔진', 'mongodb', 'api', '파이프라인', '플랫폼', 'hybrid', '하이브리드'],
     kicker: (t) => t.nav.software,
     title: (t) => t.products.software.title,
     description: (t) => t.products.software.intro,

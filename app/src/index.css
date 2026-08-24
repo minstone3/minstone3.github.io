@@ -355,6 +355,82 @@ h2 { max-width: 22ch; margin-bottom: 0; font-size: clamp(32px, 3.6vw, 56px); lin
 .tech-diff .diff-card p { font-size: 13px; line-height: 1.6; }
 .tech-diff .diff-image { height: 160px; }
 
+.tech-hybrid { padding-top: 56px; padding-bottom: 56px; }
+.tech-hybrid .products-head { margin-bottom: 22px; }
+.tech-hybrid h2 {
+  max-width: 20ch;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -.06em;
+}
+.tech-hybrid .software-intro {
+  max-width: 44em;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.tech-hybrid-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.tech-hybrid-visual {
+  margin: 0;
+  overflow: hidden;
+  min-height: 280px;
+  background: #e8eef0;
+}
+.tech-hybrid-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tech-hybrid-points {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+.tech-hybrid-point {
+  padding: 22px 20px;
+  border: 1px solid rgba(167, 239, 202, .18);
+  background: #0b2233;
+}
+.tech-hybrid-point h3 {
+  margin: 0 0 8px;
+  color: var(--mint);
+  font-size: 16px;
+}
+.tech-hybrid-point p {
+  margin: 0;
+  color: #c3d0d2;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.tech-hybrid-merits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.tech-hybrid-merit {
+  padding: 18px 18px 20px;
+  border: 1px solid rgba(167, 239, 202, .18);
+  background: rgba(7, 24, 39, .35);
+}
+.tech-hybrid-merit h3 {
+  margin: 0 0 8px;
+  color: var(--lime);
+  font-size: 15px;
+}
+.tech-hybrid-merit p {
+  margin: 0;
+  color: #c3d0d2;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .company-intro {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
@@ -1267,8 +1343,10 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .section-head,
   .company-intro,
   .tech-overview,
+  .tech-hybrid-grid,
   .industries,
   .contact-main { grid-template-columns: 1fr; }
+  .tech-hybrid-visual { min-height: 220px; height: 220px; }
   .hero {
     display: flex;
     flex-direction: column;
@@ -1323,6 +1401,7 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .solution-grid,
   .product-grid,
   .diff-grid,
+  .tech-hybrid-merits,
   .contact-related { grid-template-columns: 1fr; }
   .news-head { flex-direction: column; align-items: flex-start; }
   .news-row,
