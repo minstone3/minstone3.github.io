@@ -1146,7 +1146,7 @@ a.industry:focus-visible { outline: 1px solid var(--mint); outline-offset: 4px; 
   display: grid;
   grid-template-columns: minmax(0, 1.82fr) minmax(220px, .64fr);
   gap: 22px 36px;
-  align-items: stretch;
+  align-items: start;
   margin-bottom: 22px;
 }
 .robot-visual {
@@ -1156,13 +1156,9 @@ a.industry:focus-visible { outline: 1px solid var(--mint); outline-offset: 4px; 
   background: #0b2233;
 }
 .robot-visual img {
-  position: absolute;
-  inset: 0;
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
 }
 .robot-loop {
   display: flex;
@@ -1658,7 +1654,7 @@ footer .wrap { display: flex; align-items: center; justify-content: space-betwee
   .robot-solution .section-head { grid-template-columns: 1fr; }
   .robot-solution h2 { white-space: normal; }
   .tech-hybrid-visual { min-height: 220px; height: 220px; }
-  .robot-visual { height: auto; aspect-ratio: 3660 / 1260; }
+  .robot-visual { height: auto; }
   .hero {
     display: flex;
     flex-direction: column;
