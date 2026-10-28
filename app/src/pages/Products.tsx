@@ -2,33 +2,21 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import anchorImage from '../assets/product-anchor.jpg'
 import tagImage from '../assets/product-tag.jpg'
-import tagCartImage from '../assets/product-tag-cart.jpg'
 import dashboardImage from '../assets/product-dashboard.jpg'
-import dashboardSiteImage from '../assets/product-dashboard-site.jpg'
-import anchorCeilingImage from '../assets/product-anchor-ceiling.jpg'
-import mobileImage from '../assets/product-mobile.jpg'
-import legacyImage from '../assets/product-legacy.jpg'
-import uiImage from '../assets/product-ui.jpg'
-import coreImage from '../assets/product-core.jpg'
-import dbImage from '../assets/product-db.jpg'
+import cartStandardImage from '../assets/robot-cart-standard.jpeg'
+import cartDisplayImage from '../assets/robot-cart-display.jpg'
+import robotImsImage from '../assets/robot-ims.png'
+import robotKioskImage from '../assets/robot-kiosk.png'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const productImages = [anchorImage, tagImage, dashboardImage]
-const fieldImages = [anchorCeilingImage, tagCartImage, dashboardSiteImage, mobileImage]
-const pipelineImages = [anchorImage, coreImage, dbImage, uiImage, legacyImage]
+const cartImages = [cartStandardImage, cartDisplayImage]
+const robotSoftwareImages = [robotImsImage, robotKioskImage]
 
 export default function Products() {
   const { t } = useLanguage()
   const { hash } = useLocation()
   const software = t.products.software
-  const fieldAlts = [...t.products.items.map((item) => item.imageAlt), software.layers.field.mobileAlt]
-  const pipelineAlts = [
-    t.products.items[0].imageAlt,
-    software.layers.core.imageAlt,
-    software.layers.database.imageAlt,
-    software.layers.ui.imageAlt,
-    software.layers.legacy.imageAlt,
-  ]
 
   useEffect(() => {
     if (!hash) return
@@ -46,22 +34,44 @@ export default function Products() {
           <div className="product-grid">
             {t.products.items.map((product, index) => (
               <article
-                className={hash === `#${product.id}` ? 'product-card is-active' : 'product-card'}
+                className={
+                  product.id === 'cart'
+                    ? hash === `#${product.id}`
+                      ? 'product-card is-wide is-active'
+                      : 'product-card is-wide'
+                    : hash === `#${product.id}`
+                      ? 'product-card is-active'
+                      : 'product-card'
+                }
                 id={product.id}
                 key={product.id}
               >
-                <figure className="product-card-image">
-                  <img src={productImages[index]} alt={product.imageAlt} />
-                </figure>
-                <h3>{product.title}</h3>
-                <dl className="product-specs">
-                  {product.specs.map((spec) => (
-                    <div className="product-spec" key={spec.label}>
-                      <dt>{spec.label}</dt>
-                      <dd>{spec.value}</dd>
-                    </div>
-                  ))}
-                </dl>
+                {product.views ? (
+                  <div className="product-shots">
+                    {product.views.map((view, viewIndex) => (
+                      <figure className="product-shot" key={view.label}>
+                        <img src={cartImages[viewIndex]} alt={view.imageAlt} />
+                        <figcaption>{view.label}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                ) : (
+                  <figure className="product-card-image">
+                    <img src={productImages[index]} alt={product.imageAlt} />
+                  </figure>
+                )}
+                <div className="product-card-body">
+                  <h3>{product.title}</h3>
+                  <dl className="product-specs">
+                    {product.specs.map((spec) => (
+                      <div className="product-spec" key={spec.label}>
+                        <dt>{spec.label}</dt>
+                        <dd>{spec.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  {product.note ? <p className="product-note">{product.note}</p> : null}
+                </div>
               </article>
             ))}
           </div>
@@ -76,96 +86,49 @@ export default function Products() {
             <p className="section-intro software-intro">{software.intro}</p>
           </div>
 
-          <div className="soft-arch" id="software-architecture">
-            <div className="soft-arch-layer">
-              <p className="soft-arch-label mono">{software.layers.legacy.title}</p>
-              <figure className="soft-arch-visual">
-                <img src={legacyImage} alt={software.layers.legacy.imageAlt} />
-              </figure>
-              <div className="soft-arch-row soft-arch-row-4">
-                {software.layers.legacy.items.map((item) => (
-                  <div className="soft-arch-box" key={item}>
-                    {item}
+          <div className="soft-detail" id="software-system">
+            <p className="product-kicker mono">{software.system.kicker}</p>
+            <h3>{software.system.title}</h3>
+            <p className="soft-detail-lead">{software.system.intro}</p>
+            <p className="sys-flow mono">
+              <span>{software.system.down}</span>
+              <span>{software.system.up}</span>
+            </p>
+            <div className="sys-arch">
+              {software.system.layers.map((layer) => (
+                <article className="sys-layer" key={layer.number}>
+                  <div className="sys-layer-head">
+                    <span className="mono">{layer.number}</span>
+                    <strong>{layer.title}</strong>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="soft-arch-mid">
-              <div className="soft-arch-layer">
-                <p className="soft-arch-label mono">{software.layers.ui.title}</p>
-                <figure className="soft-arch-visual is-tall">
-                  <img src={uiImage} alt={software.layers.ui.imageAlt} />
-                </figure>
-                <div className="soft-arch-stack">
-                  {software.layers.ui.items.map((item) => (
-                    <div className="soft-arch-box is-ui" key={item}>
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="soft-arch-layer">
-                <p className="soft-arch-label mono">{software.layers.core.title}</p>
-                <figure className="soft-arch-visual is-tall">
-                  <img src={coreImage} alt={software.layers.core.imageAlt} />
-                </figure>
-                <div className="soft-arch-core">
-                  {software.layers.core.items.map((item) => (
-                    <div
-                      className={item.tone ? `soft-arch-box is-${item.tone}` : 'soft-arch-box'}
-                      key={item.name}
-                    >
-                      {item.name}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="soft-arch-layer">
-                <p className="soft-arch-label mono">{software.layers.database.title}</p>
-                <div className="soft-arch-box is-db">
-                  <figure className="soft-arch-visual is-tall">
-                    <img src={dbImage} alt={software.layers.database.imageAlt} />
-                  </figure>
-                  <strong>{software.layers.database.name}</strong>
-                  <span>{software.layers.database.note}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="soft-arch-layer">
-              <p className="soft-arch-label mono">{software.layers.field.title}</p>
-              <div className="soft-arch-row soft-arch-row-4">
-                {software.layers.field.items.map((item, index) => (
-                  <div className="soft-arch-box is-field" key={item}>
-                    <figure
-                      className={index === 0 ? 'soft-arch-thumb is-ceiling' : 'soft-arch-thumb'}
-                    >
-                      <img src={fieldImages[index]} alt={fieldAlts[index]} />
-                    </figure>
-                    <span className="soft-arch-caption">{item}</span>
+                  <div className={`sys-row sys-row-${layer.items.length}`}>
+                    {layer.items.map((item) => (
+                      <div className="sys-box" key={item.name}>
+                        <strong>{item.name}</strong>
+                        <span>{item.note}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </article>
+              ))}
             </div>
+            {software.system.foot ? <p className="sys-foot">{software.system.foot}</p> : null}
           </div>
 
-          <div className="soft-detail" id="software-pipeline">
-            <p className="product-kicker mono">{software.detail.kicker}</p>
-            <h3>{software.detail.title}</h3>
-            <p className="soft-detail-lead">{software.detail.lead}</p>
+          <div className="soft-detail" id="software-robot">
+            <p className="product-kicker mono">{software.robot.kicker}</p>
+            <h3>{software.robot.title}</h3>
+            <p className="soft-detail-lead">{software.robot.intro}</p>
             <div className="soft-detail-grid">
-              {software.detail.items.map((item, index) => (
-                <article className="soft-detail-item" key={item.number}>
+              {software.robot.items.map((item, index) => (
+                <article className="soft-detail-item" key={item.title}>
                   <div className="soft-detail-copy">
-                    <span className="mono">{item.number}</span>
+                    <span className="mono">{String(index + 1).padStart(2, '0')}</span>
                     <h4>{item.title}</h4>
                     <p>{item.description}</p>
                   </div>
-                  <figure className="soft-detail-image">
-                    <img src={pipelineImages[index]} alt={pipelineAlts[index]} />
+                  <figure className="soft-detail-image is-ui">
+                    <img src={robotSoftwareImages[index]} alt={item.imageAlt} />
                   </figure>
                 </article>
               ))}

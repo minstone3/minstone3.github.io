@@ -42,18 +42,24 @@ export type Messages = {
       title: string
       intro: string
       nav: Array<{ id: string; title: string }>
-      layers: {
-        legacy: { title: string; imageAlt: string; items: string[] }
-        ui: { title: string; imageAlt: string; items: string[] }
-        core: { title: string; imageAlt: string; items: Array<{ name: string; tone?: 'core' | 'api' }> }
-        database: { title: string; name: string; note: string; imageAlt: string }
-        field: { title: string; mobileAlt: string; items: string[] }
-      }
-      detail: {
+      robot: {
         kicker: string
         title: string
-        lead: string
-        items: Array<{ number: string; title: string; description: string }>
+        intro: string
+        items: Array<{ title: string; description: string; imageAlt: string }>
+      }
+      system: {
+        kicker: string
+        title: string
+        intro: string
+        down: string
+        up: string
+        foot: string
+        layers: Array<{
+          number: string
+          title: string
+          items: Array<{ name: string; note: string }>
+        }>
       }
     }
     items: Array<{
@@ -61,6 +67,8 @@ export type Messages = {
       mark: string
       title: string
       imageAlt: string
+      note?: string
+      views?: Array<{ label: string; imageAlt: string }>
       specs: Array<{ label: string; value: string }>
     }>
   }
@@ -92,6 +100,15 @@ export type Messages = {
     items: Array<{ number: string; title: string; description: string; imageAlt: string }>
     stat: string
     statAlt: string
+    robot: {
+      kicker: string
+      jump: string
+      title: LinePair
+      intro: string
+      imageAlt: string
+      loop: Array<{ number: string; title: string; note: string }>
+      items: Array<{ title: string; description: string; imageAlt: string;       points: string[] }>
+    }
   }
   news: {
     kicker: string
@@ -171,8 +188,8 @@ export const messages: Record<Language, Messages> = {
     home: {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['공간을 읽고,', '운영을 바꿉니다.'],
-      copy: 'AI 공간 지능 엔진과 cm급 UWB 식별 측위, 고성능 레이더 비식별 추적으로 사람·자산·재고의 흐름을 실시간으로 가시화하여 완전한 자율 운영 체계를 구축합니다.',
-      proofs: ['사람 · 자산 · 재고', 'UWB 식별 · 레이더 추적', '자율 운영'],
+      copy: '사람·자산·재고의 흐름을 읽고, 위치에서 미션까지 이어지는 운영을 만듭니다.',
+      proofs: ['사람 · 자산 · 재고', 'UWB 식별 · 레이더 추적', '위치에서 미션까지'],
       cta: '플랫폼 살펴보기',
       note: 'OAXIS / 공간 지능 플랫폼',
       visualAlt: '공간이 민트색 동선으로 읽히며 사람과 자산의 흐름이 가시화된 현장'
@@ -195,10 +212,10 @@ export const messages: Record<Language, Messages> = {
           imageAlt: '천장 앵커와 통합 게이트웨이로 구성된 하이브리드 인프라',
         },
         {
-          number: '03 — AUTONOMY',
+          number: '03 — INTELLIGENCE',
           title: 'AI 공간 지능화',
           description: '실시간 3D 연산과 최적 동선 도출로 현장 효율을 극대화합니다.',
-          imageAlt: 'AI가 도출한 최적 동선을 따라 이동하는 자율 물류 로봇',
+          imageAlt: 'AI가 도출한 최적 동선을 따라 이동하는 물류 로봇',
         },
       ],
     },
@@ -207,93 +224,81 @@ export const messages: Record<Language, Messages> = {
       title: '하드웨어 상세 사양 및 주요 명세',
       hardware: 'Hardware',
       software: {
-        kicker: 'SOFTWARE ARCHITECTURE',
-        title: '플랫폼 소프트웨어 아키텍처',
-        intro: 'UWB 앵커·태그와 고성능 레이더에서 레거시 시스템까지, 식별·비식별 위치 데이터를 수집·해석·연동하는 하나의 소프트웨어 스택입니다.',
+        kicker: 'SOFTWARE',
+        title: '위치에서 미션까지',
+        intro: '시스템 구성이 업무 지시와 현장 위치를 잇고, Robot IMS가 그 좌표로 차량과 작업을 운영합니다.',
         nav: [
-          { id: 'software-architecture', title: 'Software Architecture' },
-          { id: 'software-pipeline', title: 'Software Pipeline' },
+          { id: 'software-system', title: 'System Architecture' },
+          { id: 'software-robot', title: 'Robot IMS' },
         ],
-        layers: {
-          legacy: {
-            title: 'Legacy System & External Integration',
-            imageAlt: 'WMS·ERP·MES·AGV 관제 화면이 연결된 레거시 연동 환경',
-            items: [
-              'WMS / ERP (SAP, Oracle)',
-              'MES / Smart Factory Core',
-              'AGV / AMR Robot Control',
-              'Legacy Integration Adapter',
-            ],
-          },
-          ui: {
-            title: 'User-Friendly UI',
-            imageAlt: '3D 공간 지도와 모바일·관리자 UI가 함께 보이는 관제 화면',
-            items: ['3D Spatial Map UI', 'Mobile PDA App', 'Admin Portal UI'],
-          },
-          core: {
-            title: 'Core API Gateways & Processing Engines',
-            imageAlt: 'Adaptive RTLS 엔진과 Hybrid Spatial Engine이 위치 데이터를 처리하는 코어',
-            items: [
-              { name: 'Adaptive RTLS Engine (AI)', tone: 'core' },
-              { name: 'Hybrid Spatial Engine', tone: 'core' },
-              { name: 'Tag Management' },
-              { name: 'GW Ingress API (Raw)', tone: 'api' },
-              { name: 'Signage Management' },
-              { name: 'Error / Log Report' },
-              { name: 'Frontend / Mobile API', tone: 'api' },
-            ],
-          },
-          database: {
-            title: 'Database',
-            name: 'MongoDB Cluster',
-            note: 'Tag Docs & 3D Logs',
-            imageAlt: '태그 문서와 3D 로그를 저장하는 MongoDB 클러스터',
-          },
-          field: {
-            title: 'Field Hardware & Ingress',
-            mobileAlt: '현장용 Android PDA에서 위치 정보를 확인하는 화면',
-            items: [
-              'Spatial Anchors',
-              'Spatial Tags',
-              'Spatial Dashboard',
-              'Android Devices',
-            ],
-          },
-        },
-        detail: {
-          kicker: 'SOFTWARE PIPELINE',
-          title: '위치 데이터가 좌표가 되고, 운영 지시가 됩니다.',
-          lead: '오아식스 소프트웨어는 Spatial Anchor·Tag에서 들어오는 UWB ranging과 고성능 레이더 궤적을 Adaptive RTLS Engine과 Hybrid Spatial Engine으로 좌표화·융합하고, 3D 관제·현장 표시·레거시 연동까지 하나의 API 파이프라인으로 처리합니다. 하드웨어와 소프트웨어가 같은 아키텍처를 공유하므로 위치 데이터가 관제 화면에 머무르지 않고 작업 지시로 이어집니다.',
-          items: [
+        system: {
+          kicker: 'SYSTEM ARCHITECTURE',
+          title: '공간 지능 솔루션',
+          intro: 'REST API · MQTT · SSE로 네 계층을 연결합니다. 지시와 미션은 아래로, 위치와 상태는 위로 흐릅니다.',
+          down: '지시 · 미션 ↓',
+          up: '↑ 위치 · 상태',
+          foot: '',
+          layers: [
             {
-              number: '01',
-              title: 'Field Hardware & Ingress',
-              description:
-                '앵커가 태그의 UWB 위치 정보 신호를 수신하고, 고성능 레이더가 비식별 대상의 궤적을 함께 수집합니다. Gateway Ingress API가 raw ranging·레이더 포인트·배터리·상태 패킷을 코어로 전달합니다. Spatial Dashboard와 Android PDA는 같은 입출력 경로에서 현장 표시와 작업 입력을 수행합니다.',
-            },
-            {
-              number: '02',
-              title: 'Adaptive RTLS · Hybrid Spatial Engine',
-              description:
-                'Adaptive RTLS Engine은 AI 딥러닝 신호 보정으로 NLOS·철제 난반사 오차를 줄여 UWB 식별 좌표를 센티미터급으로 산출합니다. Hybrid Spatial Engine은 그 식별 좌표와 고성능 레이더의 비식별 궤적을 같은 시각에 융합해 실시간 추적합니다. Tag Management와 Signage Management가 태그 수명·점등·E-paper 콘텐츠를 제어하고, Error/Log Report가 이상 이벤트를 기록합니다.',
+              number: '04',
+              title: 'BUSINESS SYSTEMS',
+              items: [
+                { name: 'MES', note: '생산 지시 · 실적' },
+                { name: 'WMS', note: '재고 · 위치 · 출고' },
+                { name: 'POS · ORDER', note: '주문 · 결제 · 픽업' },
+                { name: 'OPERATOR', note: '운영 정책 · 모니터링' },
+              ],
             },
             {
               number: '03',
-              title: 'MongoDB Cluster',
-              description:
-                '태그 문서, 3D 동선 로그, 이벤트 이력을 문서형으로 저장해 실시간 조회와 이력 재생을 지원합니다. Frontend/Mobile API가 동일 데이터 모델을 관제·PDA·현장 디스플레이에 제공합니다.',
+              title: 'APP & DATA',
+              items: [
+                { name: 'LOCKER FRONTEND', note: '픽업 UX' },
+                { name: 'CENTRAL SERVER', note: '비즈니스 로직' },
+                { name: 'BACKEND MANAGER', note: '관리 콘솔 · API' },
+                { name: 'MONGODB', note: '위치 로그 · 속성' },
+                { name: 'REDIS · ZK · ZMQ', note: '상태 · 이벤트' },
+              ],
             },
             {
-              number: '04',
-              title: '3D Map · Admin · Mobile UI',
-              description:
-                '3D Spatial Map UI에서 실시간 위치를 시각화하고, Admin Portal에서 장치·권한·맵을 설정하며, Mobile PDA App으로 현장에서 조회와 작업을 수행합니다. 역할별로 인터페이스를 분리해 관제와 현장 실행을 동시에 유지합니다.',
+              number: '02',
+              title: 'RTLS & API',
+              items: [
+                { name: 'API LAYER', note: 'API Gateway · Flask API' },
+                { name: 'MESSAGE & RTLS', note: 'RTLS Broker · Socket Daemon' },
+                { name: 'REALTIME STREAM', note: 'SSE · Bridge/Codec · Web Tracker' },
+              ],
             },
             {
-              number: '05',
-              title: 'Legacy Integration Adapter',
+              number: '01',
+              title: 'EDGE & FIELD',
+              items: [
+                { name: 'SPATIAL GATEWAY', note: '현장 신호 수집' },
+                { name: 'SPATIAL TAG', note: '위치 신호 송신' },
+                { name: 'SPATIAL ANCHOR', note: '위치 기준점' },
+                { name: 'AMR · AGV', note: '미션 수신 · 실행' },
+                { name: 'FIELD DEVICES', note: '로봇 · Signage' },
+              ],
+            },
+          ],
+        },
+        robot: {
+          kicker: 'ROBOT SOFTWARE',
+          title: '위치 좌표를 로봇 미션으로 넘깁니다.',
+          intro:
+            'Robot IMS가 차량·미션·이력을 한 화면에서 운영하고, AMR 키오스크가 현장에서 픽업·추가·빼기를 마무리합니다.',
+          items: [
+            {
+              title: 'Robot IMS',
               description:
-                '위치 이벤트와 작업 상태를 WMS/ERP(SAP, Oracle), MES, AGV/AMR 관제에 전달합니다. 기존 운영 시스템을 교체하지 않고 위치 데이터를 입고·공정·이송 흐름에 연결합니다.',
+                '설비·경로·AMR 위치를 확인하고, Fleet 연결·운행·배터리를 모니터링합니다. 대상과 목적지를 지정해 미션을 전달하고, 진행·완료·예외를 이력으로 남깁니다. 관제는 오아식스가, 주행과 안전 제어는 Fleet Manager가 맡습니다.',
+              imageAlt: 'AMR 위치와 운송 오더를 함께 보는 Robot IMS 관제 화면',
+            },
+            {
+              title: 'AMR 키오스크',
+              description:
+                '픽업·추가·빼기를 로봇 화면에서 순서대로 마무리합니다. LED가 대상 카트를 표시하고, 수량을 확인한 뒤 작업을 완료합니다. 현장 피킹의 오피킹률을 95% 이상 줄입니다.',
+              imageAlt: '픽업·추가·빼기 단계와 이동 경로가 표시된 AMR 키오스크',
             },
           ],
         },
@@ -333,6 +338,26 @@ export const messages: Record<Language, Messages> = {
             { label: '인터페이스', value: 'Ethernet / Wi-Fi' },
             { label: '구동 기능', value: '3D 지도, 태그 제어' },
             { label: '장착 환경', value: '선반/랙 전면 설치' },
+          ],
+        },
+        {
+          id: 'cart',
+          mark: 'C',
+          title: 'Spatial Cart',
+          imageAlt: '디스플레이 포스트가 올라간 OAXIS Spatial Cart',
+          note: '디자인은 상황에 따라 변경될 수 있습니다.',
+          views: [
+            { label: '표준형', imageAlt: '디스플레이 포스트가 없는 OAXIS Spatial Cart 표준형' },
+            { label: 'Display Post 확장형', imageAlt: '디스플레이 포스트가 올라간 OAXIS Spatial Cart 확장형' },
+          ],
+          specs: [
+            { label: '모델 · 형태', value: '표준형 · Display Post 확장형' },
+            { label: '크기 · 회전', value: '780 × 506 × 270mm / 회전 직경 840mm' },
+            { label: '하중 · 리프트', value: '최대 300kg, Lift optional' },
+            { label: '속도 · 정밀도', value: '최대 1.5m/s, 만재 1.2m/s / 도착 ±40mm·2°, 말단 ±10mm·1°' },
+            { label: '주행 · 센서', value: 'Laser SLAM, Visual SLAM 옵션 / Depth Camera' },
+            { label: '배터리 · 운용', value: 'LFP 24V 30Ah / 무부하 12h, 일반 운용 4.5h / 30→80% 약 2h' },
+            { label: '통신', value: '4G · Wi-Fi · LoRa · Bluetooth' },
           ],
         },
       ],
@@ -453,6 +478,49 @@ export const messages: Record<Language, Messages> = {
       ],
       stat: '태그 동시 관제와 실시간 업데이트로 더 빠른 의사결정을 지원합니다.',
       statAlt: '수천 개 태그를 동시에 관제하는 실시간 관제 화면',
+      robot: {
+        kicker: 'ROBOT SOLUTION',
+        jump: '로봇 솔루션 보기',
+        title: ['찾기, 이동, 확인을', '하나의 흐름으로.'],
+        intro:
+          '실내 위치 솔루션이 대상을 찾고, 로봇 솔루션이 이동·픽업·운반을 실행합니다. 고정 좌표가 아니라 자산의 현재 위치가 AMR의 목적지와 작업 지시가 됩니다.',
+        imageAlt: 'AMR의 UWB 위치 추적과 이동·고정 자산에 부착된 UWB 태그를 보여주는 물류센터 장면',
+        loop: [
+          { number: '01', title: '업무 요청', note: 'WMS·MES에서 작업과 대상을 지정' },
+          { number: '02', title: '현재 위치', note: 'Tag·Anchor가 자산 좌표와 상태를 수집' },
+          { number: '03', title: '동적 미션', note: 'AI Core가 현재 좌표로 목적지를 설정' },
+          { number: '04', title: '탐색·운반', note: 'AMR이 대상을 확인하고 픽업·이송' },
+          { number: '05', title: '결과 기록', note: '진행과 완료를 관제와 이력에 반영' },
+        ],
+        items: [
+          {
+            title: 'Spatial Cart',
+            description:
+              'UWB로 AMR과 이동·고정 자산의 위치를 추적해 픽업 대상을 찾습니다. 주행은 Laser SLAM이 맡고, Spatial Tag 화면과 LED로 작업자와 로봇이 같은 대상을 확인합니다.',
+            imageAlt: '장애물과 경로를 인식하며 창고를 주행하는 OAXIS AMR',
+            points: [
+              '780 × 506 × 270mm · 회전 직경 840mm',
+              '최대 300kg · 리프트 선택',
+              '주행 최대 1.5m/s · Laser SLAM',
+              '표준형 · Display Post 확장형',
+            ],
+          },
+          {
+            title: 'Robot IMS',
+            description:
+              '설비·경로·AMR 위치를 한 화면에서 보고, Fleet 상태와 배터리, 미션 배정, 실행 이력을 함께 운영합니다.',
+            imageAlt: 'AMR 위치와 운송 오더를 함께 보는 Robot IMS 관제 화면',
+            points: ['공간·차량 관제', 'Fleet 연결·운행·배터리', '대상·목적지 미션 배정', '진행·완료·예외 이력'],
+          },
+          {
+            title: 'AMR 키오스크',
+            description:
+              '픽업·추가·빼기를 로봇 화면에서 마무리합니다. LED로 대상 카트를 표시해 현장에서 피킹 대상을 바로 확인합니다.',
+            imageAlt: '픽업·추가·빼기 단계와 이동 경로가 표시된 AMR 키오스크',
+            points: ['피킹·분배 원스톱', 'LED로 대상 카트 표시', '수량 확인 후 추가·빼기 완료', '오피킹률 95% 이상 감소'],
+          },
+        ],
+      },
     },
     news: {
       kicker: 'NEWSROOM',
@@ -502,7 +570,7 @@ export const messages: Record<Language, Messages> = {
     contact: {
       kicker: 'Partnership / PoC / SI',
       title: ['현장의 다음 장면을', '함께 만들어 보세요.'],
-      copy: '스마트 물류·공장 현장 실증부터 WMS/MES/ERP 연동, 글로벌 공동 사업화까지 논의할 수 있습니다.',
+      copy: '스마트 물류·공장의 RTLS–AMR 현장 실증, WMS/MES/ERP 연동, 로봇 자동화 공동 사업까지 논의할 수 있습니다.',
       visualAlt: '밝은 회의실에서 WMS·MES·위치 지도를 함께 보며 시스템 연동을 논의하는 장면',
       related: [
         {
@@ -543,8 +611,8 @@ export const messages: Record<Language, Messages> = {
     home: {
       kicker: 'AI Spatial Intelligence · RTLS Platform',
       title: ['Read the space,', 'reshape operations.'],
-      copy: 'With an AI spatial intelligence engine, centimeter-level UWB identified positioning, and high-performance radar tracking of untagged targets, we visualize the flow of people, assets, and inventory in real time to build a fully autonomous operations system.',
-      proofs: ['People · Assets · Inventory', 'UWB identity · radar track', 'Autonomous operations'],
+      copy: 'We read the flow of people, assets, and inventory, and build operations that run from location through to the mission.',
+      proofs: ['People · Assets · Inventory', 'UWB identity · radar track', 'Location to mission'],
       cta: 'Explore the platform',
       note: 'OAXIS / SPATIAL INTELLIGENCE PLATFORM',
       visualAlt: 'A site where mint path lines make the space readable and the flow of people and assets visible'
@@ -567,10 +635,10 @@ export const messages: Record<Language, Messages> = {
           imageAlt: 'Hybrid infrastructure of ceiling anchors and integrated gateways',
         },
         {
-          number: '03 — AUTONOMY',
+          number: '03 — INTELLIGENCE',
           title: 'AI spatial intelligence',
           description: 'Real-time 3D computation and optimal routing maximize on-site efficiency.',
-          imageAlt: 'Autonomous logistics robots following AI-optimized routes',
+          imageAlt: 'Logistics robots following AI-optimized routes',
         },
       ],
     },
@@ -579,93 +647,81 @@ export const messages: Record<Language, Messages> = {
       title: 'Hardware specifications and key details',
       hardware: 'Hardware',
       software: {
-        kicker: 'SOFTWARE ARCHITECTURE',
-        title: 'Platform software architecture',
-        intro: 'One software stack that collects, interprets, and connects identified and unidentified location data — from UWB anchors, tags, and high-performance radar through to legacy systems.',
+        kicker: 'SOFTWARE',
+        title: 'From location to mission',
+        intro: 'The system stack links work orders with floor locations, and Robot IMS runs vehicles and jobs from those coordinates.',
         nav: [
-          { id: 'software-architecture', title: 'Software Architecture' },
-          { id: 'software-pipeline', title: 'Software Pipeline' },
+          { id: 'software-system', title: 'System Architecture' },
+          { id: 'software-robot', title: 'Robot IMS' },
         ],
-        layers: {
-          legacy: {
-            title: 'Legacy System & External Integration',
-            imageAlt: 'Legacy integration environment with WMS, ERP, MES, and AGV control screens',
-            items: [
-              'WMS / ERP (SAP, Oracle)',
-              'MES / Smart Factory Core',
-              'AGV / AMR Robot Control',
-              'Legacy Integration Adapter',
-            ],
-          },
-          ui: {
-            title: 'User-Friendly UI',
-            imageAlt: '3D spatial map with mobile and admin portal UI',
-            items: ['3D Spatial Map UI', 'Mobile PDA App', 'Admin Portal UI'],
-          },
-          core: {
-            title: 'Core API Gateways & Processing Engines',
-            imageAlt: 'Adaptive RTLS engine and Hybrid Spatial Engine processing location data',
-            items: [
-              { name: 'Adaptive RTLS Engine (AI)', tone: 'core' },
-              { name: 'Hybrid Spatial Engine', tone: 'core' },
-              { name: 'Tag Management' },
-              { name: 'GW Ingress API (Raw)', tone: 'api' },
-              { name: 'Signage Management' },
-              { name: 'Error / Log Report' },
-              { name: 'Frontend / Mobile API', tone: 'api' },
-            ],
-          },
-          database: {
-            title: 'Database',
-            name: 'MongoDB Cluster',
-            note: 'Tag Docs & 3D Logs',
-            imageAlt: 'MongoDB cluster storing tag documents and 3D logs',
-          },
-          field: {
-            title: 'Field Hardware & Ingress',
-            mobileAlt: 'On-site Android PDA showing location information',
-            items: [
-              'Spatial Anchors',
-              'Spatial Tags',
-              'Spatial Dashboard',
-              'Android Devices',
-            ],
-          },
-        },
-        detail: {
-          kicker: 'SOFTWARE PIPELINE',
-          title: 'Location data becomes coordinates, then work instructions.',
-          lead: 'OAXIS software turns UWB ranging from Spatial Anchors and Tags, plus high-performance radar tracks, into coordinates through the Adaptive RTLS Engine and Hybrid Spatial Engine, then carries them through 3D monitoring, on-site display, and legacy integration as one API pipeline. Hardware and software share the same architecture, so location data does not stop on a control screen — it becomes a work instruction.',
-          items: [
+        system: {
+          kicker: 'SYSTEM ARCHITECTURE',
+          title: 'Spatial Intelligence system',
+          intro: 'REST API, MQTT, and SSE connect four layers. Work orders and missions flow down. Location and status flow up.',
+          down: 'Orders · missions ↓',
+          up: '↑ Location · status',
+          foot: '',
+          layers: [
             {
-              number: '01',
-              title: 'Field Hardware & Ingress',
-              description:
-                'Anchors receive UWB location information from tags, and high-performance radar collects tracks of unidentified targets. The Gateway Ingress API forwards raw ranging, radar points, battery, and status packets to the core. Spatial Dashboards and Android PDAs use the same path for on-site display and operator input.',
-            },
-            {
-              number: '02',
-              title: 'Adaptive RTLS · Hybrid Spatial Engine',
-              description:
-                'The Adaptive RTLS Engine uses AI deep-learning signal correction to cut NLOS and metal-multipath error and produce centimeter-level UWB identity coordinates. The Hybrid Spatial Engine time-aligns those identified coordinates with high-performance radar tracks of untagged targets. Tag Management and Signage Management control tag lifespan, lighting, and e-paper content, and Error/Log Report records anomalies.',
+              number: '04',
+              title: 'BUSINESS SYSTEMS',
+              items: [
+                { name: 'MES', note: 'Production orders · results' },
+                { name: 'WMS', note: 'Inventory · location · outbound' },
+                { name: 'POS · ORDER', note: 'Order · payment · pickup' },
+                { name: 'OPERATOR', note: 'Operating policy · monitoring' },
+              ],
             },
             {
               number: '03',
-              title: 'MongoDB Cluster',
-              description:
-                'Tag documents, 3D path logs, and event history are stored as documents for live lookup and playback. The Frontend/Mobile API serves the same data model to monitoring, PDA, and field displays.',
+              title: 'APP & DATA',
+              items: [
+                { name: 'LOCKER FRONTEND', note: 'Pickup UX' },
+                { name: 'CENTRAL SERVER', note: 'Business logic' },
+                { name: 'BACKEND MANAGER', note: 'Admin console · API' },
+                { name: 'MONGODB', note: 'Location logs · attributes' },
+                { name: 'REDIS · ZK · ZMQ', note: 'State · events' },
+              ],
             },
             {
-              number: '04',
-              title: '3D Map · Admin · Mobile UI',
-              description:
-                'The 3D Spatial Map UI visualizes live positions, the Admin Portal configures devices, permissions, and maps, and the Mobile PDA App handles lookup and work on the floor. Separate interfaces keep monitoring and execution running together.',
+              number: '02',
+              title: 'RTLS & API',
+              items: [
+                { name: 'API LAYER', note: 'API Gateway · Flask API' },
+                { name: 'MESSAGE & RTLS', note: 'RTLS Broker · Socket Daemon' },
+                { name: 'REALTIME STREAM', note: 'SSE · Bridge/Codec · Web Tracker' },
+              ],
             },
             {
-              number: '05',
-              title: 'Legacy Integration Adapter',
+              number: '01',
+              title: 'EDGE & FIELD',
+              items: [
+                { name: 'SPATIAL GATEWAY', note: 'Field signal collection' },
+                { name: 'SPATIAL TAG', note: 'Location signal' },
+                { name: 'SPATIAL ANCHOR', note: 'Location reference' },
+                { name: 'AMR · AGV', note: 'Receive and run missions' },
+                { name: 'FIELD DEVICES', note: 'Robots · signage' },
+              ],
+            },
+          ],
+        },
+        robot: {
+          kicker: 'ROBOT SOFTWARE',
+          title: 'Coordinates become robot missions.',
+          intro:
+            'Robot IMS runs vehicles, missions, and history on one screen. The AMR kiosk finishes pickup, add, and remove on the floor.',
+          items: [
+            {
+              title: 'Robot IMS',
               description:
-                'Location events and work status are handed to WMS/ERP (SAP, Oracle), MES, and AGV/AMR control. Existing operations stay in place while location data connects inbound, process, and transfer flows.',
+                'See facilities, routes, and AMR positions, and monitor fleet link, motion, and battery. Assign a target and destination, then keep progress, completion, and exceptions in the history. OAXIS owns monitoring. The Fleet Manager owns driving and safety control.',
+              imageAlt: 'Robot IMS screen showing AMR positions and a transport order',
+            },
+            {
+              title: 'AMR Kiosk',
+              description:
+                'Finish pickup, add, and remove in order on the robot screen. An LED marks the target cart, the quantity is confirmed, and the job is closed. Mis-picks on the floor drop by 95% or more.',
+              imageAlt: 'AMR kiosk showing pickup, add, and remove steps with the travel route',
             },
           ],
         },
@@ -705,6 +761,26 @@ export const messages: Record<Language, Messages> = {
             { label: 'Interface', value: 'Ethernet / Wi-Fi' },
             { label: 'Functions', value: '3D map, tag control' },
             { label: 'Mounting', value: 'Shelf / rack front install' },
+          ],
+        },
+        {
+          id: 'cart',
+          mark: 'C',
+          title: 'Spatial Cart',
+          imageAlt: 'OAXIS Spatial Cart with the display post raised',
+          note: 'Appearance may change depending on the site.',
+          views: [
+            { label: 'Standard', imageAlt: 'OAXIS Spatial Cart standard model without a display post' },
+            { label: 'Display Post', imageAlt: 'OAXIS Spatial Cart extended with a display post' },
+          ],
+          specs: [
+            { label: 'Form', value: 'Standard and Display Post' },
+            { label: 'Size', value: '780 × 506 × 270mm / 840mm turning diameter' },
+            { label: 'Payload', value: 'Up to 300kg, lift optional' },
+            { label: 'Speed', value: 'Up to 1.5m/s, 1.2m/s loaded / arrival ±40mm·2°, end ±10mm·1°' },
+            { label: 'Navigation', value: 'Laser SLAM, optional Visual SLAM / depth camera' },
+            { label: 'Battery', value: 'LFP 24V 30Ah / 12h unloaded, 4.5h typical / 30→80% about 2h' },
+            { label: 'Link', value: '4G · Wi-Fi · LoRa · Bluetooth' },
           ],
         },
       ],
@@ -825,6 +901,49 @@ export const messages: Record<Language, Messages> = {
       ],
       stat: 'Simultaneous tag monitoring and real-time updates for faster decisions.',
       statAlt: 'Live control screen tracking thousands of tags at once',
+      robot: {
+        kicker: 'ROBOT SOLUTION',
+        jump: 'See the robot solution',
+        title: ['Find, move, and confirm', 'in one flow.'],
+        intro:
+          'Indoor positioning finds the target, and the robot solution moves, picks, and carries it. The asset’s current location — not a fixed coordinate — becomes the AMR destination and work order.',
+        imageAlt: 'Fulfillment aisle showing UWB tracking on the AMR and UWB tags on moving and fixed assets',
+        loop: [
+          { number: '01', title: 'Work request', note: 'WMS or MES names the job and the target' },
+          { number: '02', title: 'Live location', note: 'Tags and anchors collect the asset coordinate and status' },
+          { number: '03', title: 'Dynamic mission', note: 'AI Core sets the destination from the current coordinate' },
+          { number: '04', title: 'Search and carry', note: 'The AMR confirms the target, then picks up and transfers it' },
+          { number: '05', title: 'Result record', note: 'Progress and completion land in monitoring and history' },
+        ],
+        items: [
+          {
+            title: 'Spatial Cart',
+            description:
+              'UWB tracks the AMR and moving or fixed assets to find the pickup target. Laser SLAM handles driving, and the Spatial Tag screen and LED let the operator and the robot confirm the same item.',
+            imageAlt: 'An OAXIS AMR reading obstacles and its path while driving a warehouse aisle',
+            points: [
+              '780 × 506 × 270mm · 840mm turning diameter',
+              'Up to 300kg · optional lift',
+              'Driving up to 1.5m/s · Laser SLAM',
+              'Standard and Display Post models',
+            ],
+          },
+          {
+            title: 'Robot IMS',
+            description:
+              'See facilities, routes, and AMR positions on one screen, and run fleet status, battery, mission assignment, and execution history together.',
+            imageAlt: 'Robot IMS screen showing AMR positions and a transport order',
+            points: ['Space and vehicle monitoring', 'Fleet link, motion, and battery', 'Target and destination assignment', 'Progress, completion, and exceptions'],
+          },
+          {
+            title: 'AMR Kiosk',
+            description:
+              'Finish pickup, add, and remove on the robot screen. An LED marks the target cart so the floor can confirm the pick immediately.',
+            imageAlt: 'AMR kiosk showing pickup, add, and remove steps with the travel route',
+            points: ['One-stop picking and distribution', 'LED marks the target cart', 'Confirm quantity, then complete add or remove', 'Mis-picks reduced by 95% or more'],
+          },
+        ],
+      },
     },
     news: {
       kicker: 'NEWSROOM',
@@ -874,7 +993,7 @@ export const messages: Record<Language, Messages> = {
     contact: {
       kicker: 'Partnership / PoC / SI',
       title: ['Let’s build the next scene', 'on site together.'],
-      copy: 'We can discuss field PoCs for smart logistics and factories, WMS/MES/ERP integration, and global co-commercialization.',
+      copy: 'We can discuss RTLS–AMR field PoCs for logistics and factories, WMS/MES/ERP integration, and joint work on robot automation.',
       visualAlt: 'A bright meeting room where teams review WMS, MES, and a live location map',
       related: [
         {
